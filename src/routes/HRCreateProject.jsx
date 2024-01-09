@@ -6,6 +6,7 @@ function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState('');
   const [projectDetail, setProjectDetail] = useState('');
+  const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
   const [projectImage, setProjectImage] = useState('');
 
@@ -19,6 +20,7 @@ function HRCreateProject() {
     // Reset form fields after submission
     setProjectName('');
     setProjectDetail('');
+    setStartingDate('');
     setClosingDate('');
     setProjectImage('');
   };
@@ -50,9 +52,24 @@ function HRCreateProject() {
                 id="projectDetail"
                 className="form-control"
                 value={projectDetail}
+                style={{ height: '150px' }}
                 onChange={(e) => setProjectDetail(e.target.value)}
                 required
+                
               ></textarea>
+            </div>
+
+            {/* Application Starting Date */}
+            <div className="mb-3">
+              <label htmlFor="startingDate" className="form-label">Application Starting Date:</label>
+              <input
+                type="date"
+                id="startingDate"
+                className="form-control"
+                value={startingDate}
+                onChange={(e) => setStartingDate(e.target.value)}
+                required
+              />
             </div>
 
             {/* Application Closing Date */}
@@ -70,29 +87,15 @@ function HRCreateProject() {
 
             {/* Project Image */}
             <div className="mb-3">
-              <label htmlFor="projectImage" className="form-label">Project Image:</label>
+              <label htmlFor="projectImage" className="form-label">Project Image URL:</label>
               <input
                 type="file"
                 id="projectImage"
                 className="form-control"
-                onChange={handleImageChange}
-                accept="image/*"
+                value={projectImage}
+                onChange={(e) => setProjectImage(e.target.value)}
               />
-
-              {/* Placeholder for the image size */}
-              {projectImage && (
-                <div className="mt-2">
-                  <p>Image Preview:</p>
-                  <img
-                    src={URL.createObjectURL(projectImage)}
-                    alt="Project Preview"
-                    className="img-fluid rounded"
-                    style={{ maxWidth: '200px', maxHeight: '200px' }}
-                  />
-                </div>
-              )}
             </div>
-
 
             {/* Submit Button */}
             <button type="submit" className="btn btn-primary">Create Project</button>
