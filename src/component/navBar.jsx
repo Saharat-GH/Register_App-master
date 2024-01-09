@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 // import Logo from '../../public/Logo.svg';
 export default function NavBar() {
   return (
@@ -11,11 +12,17 @@ export default function NavBar() {
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary text-warning">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-light">Features</a></li>
-        <li><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 text-light">About</a></li>
+        <li><NavLink to="{'home'}" class="nav-link px-2 link-secondary text-warning">Home</NavLink></li>
+        <li><NavLink href="#" class="nav-link px-2 text-light">Features</NavLink></li>
+        <li><NavLink href="#" class="nav-link px-2 text-light">Pricing</NavLink></li>
+        <li><NavLink href="#" class="nav-link px-2 text-light">FAQs</NavLink></li>
+        <li><NavLink href="#" class="nav-link px-2 text-light">About</NavLink></li>
+        {/* <NavLink
+                    to={`contacts/${contact.id}`}
+                    className={({ isActive, isPending }) =>
+                      isActive ? "active" : isPending ? "pending" : ""
+                    }
+        ></NavLink> */}
       </ul>
 
       <div class="col-md-3 text-end">
