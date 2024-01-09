@@ -54,7 +54,7 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
-                placeholder='Enter project name here'
+                placeholder='Enter project name'
                 required
               />
             </div>
@@ -68,7 +68,7 @@ function HRCreateProject() {
                 value={projectDetail}
                 style={{ height: '150px' }}
                 onChange={(e) => setProjectDetail(e.target.value)}
-                placeholder='Enter project detail here'
+                placeholder='Enter project detail'
                 required
               >
               </textarea>
@@ -114,7 +114,7 @@ function HRCreateProject() {
 
             {/* HR Email List */}
             <div className="mb-3">
-              <label htmlFor="HREmailList" className="form-label">HR email list:</label>
+              <label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
               {HREmails.map((email, index) => (
                 <div key={index} className="mb-2">
                   <input
@@ -123,7 +123,7 @@ function HRCreateProject() {
                     className="form-control"
                     value={email}
                     onChange={(e) => handleHREmailChange(index, e.target.value)}
-                    placeholder='Enter HR email here'
+                    placeholder={(index == 0) ? `Enter your email` : `Enter other HR email`}
                     required
                   />
                 </div>
