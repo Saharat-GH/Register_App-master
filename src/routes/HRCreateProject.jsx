@@ -9,6 +9,7 @@ function HRCreateProject() {
   const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
   const [projectImage, setProjectImage] = useState('');
+  const [HREmails, setHREmails] = useState(['']);
 
   // Function to handle form submission
   const handleSubmit = (e) => {
@@ -23,6 +24,18 @@ function HRCreateProject() {
     setStartingDate('');
     setClosingDate('');
     setProjectImage('');
+    setHREmails(['']);
+  };
+
+  const handleHREmailChange = (index, value) => {
+    const newEmails = [...HREmails];
+    newEmails[index] = value;
+    setHREmails(newEmails);
+  };
+
+  // Function to add a new email input
+  const addHREmailInput = () => {
+    setHREmails([...HREmails, '']);
   };
 
   return (
@@ -95,6 +108,24 @@ function HRCreateProject() {
                 value={projectImage}
                 onChange={(e) => setProjectImage(e.target.value)}
               />
+            </div>
+
+            {/* HR Email List */}
+            <div className="mb-3">
+              <label htmlFor="HREmailList" className="form-label">HR email list:</label>
+              {HREmails.map((email, index) => (
+                <div key={index} className="mb-2">
+                  <input
+                    type="text"
+                    id={`HREmailList${index}`}
+                    className="form-control"
+                    value={email}
+                    onChange={(e) => handleHREmailChange(index, e.target.value)}
+                    required
+                  />
+                </div>
+              ))}
+              <button type="button" className="btn btn-secondary" onClick={addHREmailInput}>Add Email</button>
             </div>
 
             {/* Submit Button */}

@@ -8,7 +8,7 @@ import Login from './login';
 import SignUp from './routes/signup';
 import '../StyleComponent/index.css';
 import HRCreateProject from './routes/HRCreateProject';
-import ErrorPage from './routes/ErrorPage';
+import ErrorPage from './routes/errorPage';
 
 const router = createBrowserRouter([
   {
