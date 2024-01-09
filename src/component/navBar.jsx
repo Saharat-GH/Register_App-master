@@ -31,7 +31,7 @@ export default function NavBar() {
         <div className="d-flex align-items-center ms-auto">
           <ul className="nav justify-content-center mb-md-0 me-3">
             <li>
-              <Link to="#" className="nav-link px-2 link-secondary text-warning">
+              <Link to="/" className="nav-link px-2 link-secondary text-warning">
                 Home
               </Link>
             </li>
