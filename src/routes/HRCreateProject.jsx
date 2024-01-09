@@ -133,6 +133,9 @@ function HRCreateProject() {
           </form>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
       <Footer />
     </div>
   );
