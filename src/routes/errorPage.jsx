@@ -1,6 +1,6 @@
 import NavBar from "../component/navBar";
 import Footer from "../component/footer";
-function Error() {
+function ErrorPage() {
     return (
     <div className="Body">
         <NavBar/>
@@ -9,4 +9,4 @@ function Error() {
     </div>
     )
 }
-export default Error;
+export default ErrorPage;

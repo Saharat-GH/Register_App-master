@@ -7,11 +7,12 @@ import {
 import Login from './login';
 import SignUp from './routes/signup';
 import '../StyleComponent/index.css';
-
+import ErrorPage from './routes/errorPage';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <SignUp/>,
+    errorElement: <ErrorPage />,
   },
 ]);
 
