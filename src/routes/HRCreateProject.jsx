@@ -54,6 +54,7 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
+                placeholder='Enter project name here'
                 required
               />
             </div>
@@ -67,9 +68,10 @@ function HRCreateProject() {
                 value={projectDetail}
                 style={{ height: '150px' }}
                 onChange={(e) => setProjectDetail(e.target.value)}
+                placeholder='Enter project detail here'
                 required
-                
-              ></textarea>
+              >
+              </textarea>
             </div>
 
             {/* Application Starting Date */}
@@ -121,6 +123,7 @@ function HRCreateProject() {
                     className="form-control"
                     value={email}
                     onChange={(e) => handleHREmailChange(index, e.target.value)}
+                    placeholder='Enter HR email here'
                     required
                   />
                 </div>
