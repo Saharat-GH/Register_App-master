@@ -8,6 +8,7 @@ import Login from './login';
 import SignUp from './routes/signup';
 import '../StyleComponent/index.css';
 import ErrorPage from './routes/errorPage';
+import HRCreateProject from './routes/HRCreateProject';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
     element: <SignUp/>,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/hr/createproject",
+    element: <HRCreateProject />,
+    errorElement: <ErrorPage />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
