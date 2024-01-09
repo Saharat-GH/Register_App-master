@@ -6,12 +6,12 @@ import LoginPopup from "./LoginPopup";
 export default function NavBar() {
   const [login, setLogin] = useState(false);
 
-  const openLogin=()=>{
-    setLogin(true)
-  }
-  const closeLogin=()=>{
-    setLogin(false)
-  }
+  const openLogin = () => {
+    setLogin(true);
+  };
+  const closeLogin = () => {
+    setLogin(false);
+  };
   return (
     <div>
       <header
@@ -35,18 +35,26 @@ export default function NavBar() {
               </a>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 text-light">
+              <a href="#" className="nav-link px-2 link-secondary  text-light">
                 About us
               </a>
             </li>
           </ul>
 
           <div className="text-end">
-            <button type="button" onClick={openLogin} className="btn btn-outline-warning me-2">
+            <button
+              type="button"
+              onClick={openLogin}
+              className="btn btn-outline-warning me-2"
+            >
               Login
             </button>
             {login && <LoginPopup showPopup={login} onClose={closeLogin} />}
-            <button type="button" className="btn btn-warning text-light">
+            <button
+              type="button"
+              className="btn btn-warning text-light link-dark"
+              style={{ marginRight: "20px" }}
+            >
               Sign-up
             </button>
           </div>
