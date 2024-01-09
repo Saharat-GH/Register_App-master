@@ -1,7 +1,7 @@
 import NavBar from "../component/navBar";
 import ProjectBox from "../component/projectBox";
-import Footer from "../component/footer";
-function SignUp() {
+import Footer from "../component/Footer";
+function HomePage() {
     return (
     <div className="Body">
         <NavBar/>
@@ -10,4 +10,4 @@ function SignUp() {
     </div>
     )
 }
-export default SignUp;
+export default HomePage;
