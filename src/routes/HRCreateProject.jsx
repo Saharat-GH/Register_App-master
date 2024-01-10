@@ -81,7 +81,7 @@ function HRCreateProject() {
                 type="date"
                 id="startingDate"
                 className="form-control"
-                value={startingDate}
+                value={formatDate(startingDate)}
                 onChange={(e) => setStartingDate(e.target.value)}
                 required
               />
@@ -94,7 +94,7 @@ function HRCreateProject() {
                 type="date"
                 id="closingDate"
                 className="form-control"
-                value={closingDate}
+                value={formatDate(startingDate)}
                 onChange={(e) => setClosingDate(e.target.value)}
                 required
               />
