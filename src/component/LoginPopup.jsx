@@ -25,7 +25,7 @@ export default function LoginPopup({ showPopup, onClose }) {
 
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
-      <div className="popup-content">
+      <div className="popup-content-login">
         <button className="closebtn " onClick={onClose}>
           &times;
         </button>

@@ -2,17 +2,17 @@ import React from "react";
 import Logo from "../assets/Logo.svg";
 import { useState } from "react";
 import LoginPopup from "./LoginPopup";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   const [login, setLogin] = useState(false);
 
-  const openLogin=()=>{
-    setLogin(true)
-  }
-  const closeLogin=()=>{
-    setLogin(false)
-  }
+  const openLogin = () => {
+    setLogin(true);
+  };
+  const closeLogin = () => {
+    setLogin(false);
+  };
   return (
     <div>
       <header
@@ -31,20 +31,30 @@ export default function NavBar() {
         <div className="d-flex align-items-center ms-auto">
           <ul className="nav justify-content-center mb-md-0 me-3">
             <li>
-              <NavLink to="/" className="nav-link px-2 link-secondary text-warning">
+              <NavLink
+                to="/"
+                className="nav-link px-2 text-warning"
+              >
                 Home
               </NavLink>
             </li>
           </ul>
 
           <div className="text-end">
-            <button type="button" onClick={openLogin} className="btn btn-outline-warning me-2" >
+            <button
+              type="button"
+              onClick={openLogin}
+              className="btn btn-outline-warning me-2"
+            >
               Login
             </button>
             {login && <LoginPopup showPopup={login} onClose={closeLogin} />}
-            <button type="button" className="btn btn-warning text-light link-dark ">
+            <button
+              type="button"
+              className="btn btn-warning text-light link-dark "
+            >
               Sign-up
-            </button> 
+            </button>
           </div>
         </div>
       </header>

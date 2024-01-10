@@ -4,8 +4,8 @@ import "../../StyleComponent/projectdetail.css";
 export default function ProjectDetail({ showPopup, onClose }) {
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
-      <div className="popup-content">
-        <button className="close-button" onClick={onClose}>
+      <div className="popup-content-detail">
+      <button className="closebtn " onClick={onClose}>
           &times;
         </button>
         <div className="contentText">
@@ -39,7 +39,7 @@ export default function ProjectDetail({ showPopup, onClose }) {
         </div>
         <button
           onClick={onClose}
-          className="btn btn-warning text-light d-flex justify-content-center "
+          className="btn btn-warning text-light d-flex justify-content-center link-dark"
           id="submitbtn"
         >
           Submit

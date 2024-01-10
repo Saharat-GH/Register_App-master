@@ -17,8 +17,8 @@
     display: flex;
   }
   
-  .popup-content {
-    background-color: #fff;
+  .popup-content-login {
+    background-color: #333;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -27,6 +27,7 @@
     z-index: 1000;
     position: relative;
     z-index: 1001;
+    width: 400px;
   }
   
   .closebtn {
