@@ -5,7 +5,6 @@ import '../../StyleComponent/forgetpass.css';
 export default function ForgetPassword() {
   return (
     <div>
-      <NavBar />
       <div className="forgetPass d-flex justify-content-center align-items-center">
         <form className='text-center'>
           <h2>Forgot Password</h2>

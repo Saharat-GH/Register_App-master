@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
+import { NavLink } from "react-router-dom";
 
 export default function LoginPopup({ showPopup, onClose }) {
   const [email, setEmail] = useState("");
@@ -56,12 +57,13 @@ export default function LoginPopup({ showPopup, onClose }) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <Link
+              <NavLink
                 to="/forgot"
                 className="small text-secondary d-flex justify-content-end"
+                onClick={onClose}
               >
                 Forget your password?
-              </Link>
+              </NavLink>
             </div>
 
             <button

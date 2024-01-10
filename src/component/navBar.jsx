@@ -35,21 +35,16 @@ export default function NavBar() {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink to="#" className="nav-link px-2 text-light">
-                About us
-              </NavLink>
-            </li>
           </ul>
 
           <div className="text-end">
-            <button type="button" onClick={openLogin} className="btn btn-outline-warning me-2">
+            <button type="button" onClick={openLogin} className="btn btn-outline-warning me-2" >
               Login
             </button>
             {login && <LoginPopup showPopup={login} onClose={closeLogin} />}
-            <button type="button" className="btn btn-warning text-light">
+            <button type="button" className="btn btn-warning text-light link-dark ">
               Sign-up
-            </button>
+            </button> 
           </div>
         </div>
       </header>
