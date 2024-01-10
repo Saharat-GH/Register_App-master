@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../assets/Logo.svg";
 import { useState } from "react";
 import LoginPopup from "./LoginPopup";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [login, setLogin] = useState(false);
@@ -19,26 +20,22 @@ export default function NavBar() {
         id="Nav"
       >
         <div className="col-md-3">
-          <a
+          <li
             href="/"
             className="d-inline-flex link-body-emphasis text-decoration-none"
           >
+            <Link to="/">
             <img src={Logo} alt="Your Logo" width="120" height="75" />
-          </a>
+            </Link>
+          </li>
         </div>
 
         <div className="d-flex align-items-center ms-auto">
           <ul className="nav justify-content-center mb-md-0 me-3">
-            <li>
-              <a href="#" className="nav-link px-2 link-secondary text-warning">
+            <Link
+              to="/" className="nav-link px-2 link-secondary text-warning">
                 Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-link px-2 link-secondary  text-light">
-                About us
-              </a>
-            </li>
+            </Link>
           </ul>
 
           <div className="text-end">

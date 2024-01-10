@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
+import { Link } from "react-router-dom";
 
 export default function LoginPopup({ showPopup, onClose }) {
   const [email, setEmail] = useState("");
@@ -56,12 +57,12 @@ export default function LoginPopup({ showPopup, onClose }) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <a
-                href="#"
+              <Link
+                to="/forgot"
                 className="small text-secondary d-flex justify-content-end"
               >
                 Forget your password?
-              </a>
+              </Link>
             </div>
 
             <button

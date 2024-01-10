@@ -7,11 +7,16 @@ import {
 import Login from './login';
 import '../StyleComponent/index.css';
 import HomePage from './routes/HomePage';
+import ForgetPassword from './component/ForgetPassword';
 
 const router = createBrowserRouter([
   {
-    path: "/Home",
+    path: "/",
     element: <HomePage/>,
+  },
+  {
+    path: "/forgot",
+    element: <ForgetPassword/>,
   },
 ]);
 
