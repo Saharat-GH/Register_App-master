@@ -153,12 +153,11 @@ function HRCreateProject() {
                 value={projectEducation}
                 onChange={(e) => setProjectEducation(e.target.value)}
               >
-                <option value="">Select Education</option>
+                <option value="" disabled selected>Select Education</option>
                 <option value="High School">High School</option>
                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                 <option value="Master's Degree">Master's Degree</option>
                 <option value="PhD">PhD</option>
-                {/* Add more options as needed */}
               </select>
             </div>
 
