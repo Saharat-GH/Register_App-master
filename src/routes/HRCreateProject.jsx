@@ -10,6 +10,8 @@ function HRCreateProject() {
   const [closingDate, setClosingDate] = useState('');
   const [projectSalary, setProjectSalary] = useState(0.00);
   const [projectPosition, setProjectPosition] = useState('');
+  const [projectAmount, setProjectAmount] = useState(0);
+  const [projectEducation, setProjectEducation] = useState('');
   const [projectImage, setProjectImage] = useState('');
 
   // const [HREmails, setHREmails] = useState(['']);
@@ -125,24 +127,28 @@ function HRCreateProject() {
                 onChange={(e) => setProjectPosition(e.target.value)}
                 />
             </div>
-            {/* HR Email List
+
             <div className="mb-3">
-            <label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
-            {HREmails.map((email, index) => (
-              <div key={index} className="mb-2">
+              <label htmlFor="projectAmount" className="form-label">Project Amount:</label>
               <input
-                    type="text"
-                    id={`HREmailList${index}`}
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => handleHREmailChange(index, e.target.value)}
-                    placeholder={(index == 0) ? `Enter your email` : `Enter other HR email`}
-                    required
-                    />
-                    </div>
-                    ))}
-                    <button type="button" className="btn btn-secondary" onClick={addHREmailInput}>Add Email</button>
-                  </div> */}
+                type="number"
+                id="projectAmount"
+                className="form-control"
+                value={projectAmount}
+                onChange={(e) => setProjectAmount(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="projectEducation" className="form-label">Project Education:</label>
+              <input
+                type="text"
+                id="projectEducation"
+                className="form-control"
+                value={projectEducation}
+                onChange={(e) => setProjectEducation(e.target.value)}
+              />
+            </div>
 
             {/* Submit Button */}
             <button type="submit" className="btn btn-primary">Create Project</button>
@@ -158,20 +164,39 @@ function HRCreateProject() {
 
 export default HRCreateProject;
 
+{/* HR Email List
+<div className="mb-3">
+<label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
+{HREmails.map((email, index) => (
+  <div key={index} className="mb-2">
+  <input
+        type="text"
+        id={`HREmailList${index}`}
+        className="form-control"
+        value={email}
+        onChange={(e) => handleHREmailChange(index, e.target.value)}
+        placeholder={(index == 0) ? `Enter your email` : `Enter other HR email`}
+        required
+        />
+        </div>
+        ))}
+        <button type="button" className="btn btn-secondary" onClick={addHREmailInput}>Add Email</button>
+      </div> */}
+
 // const handleHREmailChange = (index, value) => {
-//   const newEmails = [...HREmails];
-//   newEmails[index] = value;
-//   setHREmails(newEmails);
-// };
-
-// Function to add a new email input
-// const addHREmailInput = () => {
-//   setHREmails([...HREmails, '']);
-// };
-
-// function formatDate(date) {
-//   const day = date.getDate().toString().padStart(2, '0');
-//   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-//   const year = date.getFullYear();
+  //   const newEmails = [...HREmails];
+  //   newEmails[index] = value;
+  //   setHREmails(newEmails);
+  // };
+  
+  // Function to add a new email input
+  // const addHREmailInput = () => {
+    //   setHREmails([...HREmails, '']);
+    // };
+    
+    // function formatDate(date) {
+      //   const day = date.getDate().toString().padStart(2, '0');
+      //   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+      //   const year = date.getFullYear();
 //   return `${day}-${month}-${year}`;
 // }
