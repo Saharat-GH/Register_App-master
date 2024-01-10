@@ -3,15 +3,22 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
 import { NavLink } from "react-router-dom";
+import { IoLogIn } from "react-icons/io5";
+import { IoIosMail } from "react-icons/io";
 
 export default function LoginPopup({ showPopup, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [login, setLogin] = useState(false);
 
   const handleLogin = () => {
     // Add your login logic here
-    console.log("Login clicked with email:", email, "and password:", password);
+    setLogin(true);
   };
+
+  const handleLogout = () => {
+    setLogin(false);
+  }
 
   const handleRegister = () => {
     // Add your register logic here
@@ -34,7 +41,7 @@ export default function LoginPopup({ showPopup, onClose }) {
           <form>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
-                Email
+                Email 
               </label>
               <input
                 type="email"
@@ -43,7 +50,7 @@ export default function LoginPopup({ showPopup, onClose }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-              />
+              />  
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
@@ -68,15 +75,14 @@ export default function LoginPopup({ showPopup, onClose }) {
 
             <button
               type="button"
-              className="btn btn-warning text-light"
+              className="btn btn-warning text-light link-dark"
               onClick={handleLogin}
             >
-              Login
+              Login <IoLogIn />
             </button>
             <div className="signupbtn">
               <p href="#">
-                {" "}
-                or Sign up{" "}
+                or Sign up
                 <span>
                   <a href="#">here</a>
                 </span>

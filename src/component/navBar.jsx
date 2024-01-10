@@ -48,7 +48,7 @@ export default function NavBar() {
             >
               Login
             </button>
-            {login && <LoginPopup showPopup={login} onClose={closeLogin} />}
+            {login && <LoginPopup showPopup={login} onClick={openLogin} onClose={closeLogin} />}
             <button
               type="button"
               className="btn btn-warning text-light link-dark "
