@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
-import { Link } from "react-router-dom";
 
 export default function LoginPopup({ showPopup, onClose }) {
   const [email, setEmail] = useState("");

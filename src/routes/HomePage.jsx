@@ -4,9 +4,7 @@ import Footer from "../component/Footer";
 function HomePage() {
     return (
     <div className="Body">
-        <NavBar/>
         <ProjectBox/>
-        <Footer/>
     </div>
     )
 }
