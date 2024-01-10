@@ -38,9 +38,15 @@ function HRCreateProject() {
     setHREmails([...HREmails, '']);
   };
 
+  // function formatDate(date) {
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  //   const year = date.getFullYear();
+  //   return `${day}-${month}-${year}`;
+  // }
+
   return (
     <div className="Body bg-light"> {/* Add custom class for background color */}
-      <NavBar />
       <div className="container mt-5">
         <div className="createBox p-4">
           <h2 className="mb-4">Create Project</h2>
@@ -81,7 +87,7 @@ function HRCreateProject() {
                 type="date"
                 id="startingDate"
                 className="form-control"
-                value={formatDate(startingDate)}
+                // value={formatDate(startingDate)}
                 onChange={(e) => setStartingDate(e.target.value)}
                 required
               />
@@ -94,7 +100,7 @@ function HRCreateProject() {
                 type="date"
                 id="closingDate"
                 className="form-control"
-                value={formatDate(startingDate)}
+                // value={formatDate(startingDate)}
                 onChange={(e) => setClosingDate(e.target.value)}
                 required
               />
@@ -110,7 +116,7 @@ function HRCreateProject() {
                 value={projectImage}
                 onChange={(e) => setProjectImage(e.target.value)}
               />
-            </div>
+            </div> 
 
             {/* HR Email List */}
             <div className="mb-3">
@@ -139,7 +145,6 @@ function HRCreateProject() {
       <br />
       <br />
       <br />
-      <Footer />
     </div>
   );
 }

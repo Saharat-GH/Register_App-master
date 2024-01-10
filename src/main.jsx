@@ -1,25 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  createRoutesFromElements
+  createRoutesFromElements,
 } from "react-router-dom";
-import Login from './login';
-import SignUp from './routes/signup';
-import '../StyleComponent/index.css';
-import HRCreateProject from './routes/HRCreateProject';
-import ErrorPage from './routes/errorPage';
-import { Route } from 'react-router-dom';
-import RootLeyout from './component/RootLeyout';
+import Login from "./login";
+import SignUp from "./routes/signup";
+import "../StyleComponent/index.css";
+import HRCreateProject from "./routes/HRCreateProject";
+import ErrorPage from "./routes/errorPage";
+import { Route } from "react-router-dom";
+import RootLeyout from "./component/RootLeyout";
+import UserMainPage from "./routes/UserMainPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-  <Route path='/' element={<RootLeyout />}>
-    <Route path='home' element={<SignUp />} />
-
-  </Route>
-
+    <Route path="/" element={<RootLeyout />}>
+        <Route index element={<SignUp />} />
+      <Route path="user" element={<SignUp />}>
+        <Route path="main" element={<UserMainPage />} />
+      </Route>
+      <Route path="hr">
+        <Route path="createproject" element={<HRCreateProject />} />
+      </Route>
+    </Route>
   )
 );
 
@@ -36,8 +41,8 @@ const router = createBrowserRouter(
 //   }
 // ]
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
