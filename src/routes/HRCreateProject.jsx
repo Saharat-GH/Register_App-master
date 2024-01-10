@@ -118,7 +118,7 @@ function HRCreateProject() {
               />
             </div> 
 
-            {/* HR Email List */}
+            {/* HR Email List
             <div className="mb-3">
               <label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
               {HREmails.map((email, index) => (
@@ -135,7 +135,7 @@ function HRCreateProject() {
                 </div>
               ))}
               <button type="button" className="btn btn-secondary" onClick={addHREmailInput}>Add Email</button>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button type="submit" className="btn btn-primary">Create Project</button>
