@@ -8,8 +8,10 @@ function HRCreateProject() {
   const [projectDetail, setProjectDetail] = useState('');
   const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
+  const [salary, setSalary] = useState(0.00);
   const [projectImage, setProjectImage] = useState('');
-  const [HREmails, setHREmails] = useState(['']);
+
+  // const [HREmails, setHREmails] = useState(['']);
 
   // Function to handle form submission
   const handleSubmit = (e) => {
@@ -27,16 +29,16 @@ function HRCreateProject() {
     setHREmails(['']);
   };
 
-  const handleHREmailChange = (index, value) => {
-    const newEmails = [...HREmails];
-    newEmails[index] = value;
-    setHREmails(newEmails);
-  };
+  // const handleHREmailChange = (index, value) => {
+  //   const newEmails = [...HREmails];
+  //   newEmails[index] = value;
+  //   setHREmails(newEmails);
+  // };
 
   // Function to add a new email input
-  const addHREmailInput = () => {
-    setHREmails([...HREmails, '']);
-  };
+  // const addHREmailInput = () => {
+  //   setHREmails([...HREmails, '']);
+  // };
 
   // function formatDate(date) {
   //   const day = date.getDate().toString().padStart(2, '0');
@@ -117,6 +119,17 @@ function HRCreateProject() {
                 onChange={(e) => setProjectImage(e.target.value)}
               />
             </div> 
+
+            <div className="mb-3">
+              <label htmlFor="salary" className='form-label'>Salary</label>
+              <input 
+                type="number"
+                id="projectSalary"
+                className="form-control"
+                value={salary}
+                onChange={(e) => setProjectSalary(e.target.value)}
+              />
+            </div>
 
             {/* HR Email List
             <div className="mb-3">
