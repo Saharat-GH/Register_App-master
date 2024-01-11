@@ -4,9 +4,7 @@ import Footer from "../component/footer";
 function SignUp() {
     return (
     <div className="Body">
-        <NavBar/>
         <ProjectBox/>
-        <Footer/>
     </div>
     )
 }
