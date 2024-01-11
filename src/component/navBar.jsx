@@ -33,13 +33,13 @@ export default function NavBar() {
             <li>
               <NavLink
                 to="/"
-                className="nav-link px-2 text-warning"
+                className="nav-link px-2 text-warning link-secondary"
               >
                 Home
               </NavLink>
             </li>
           </ul>
-
+          
           <div className="text-end">
             <button
               type="button"
