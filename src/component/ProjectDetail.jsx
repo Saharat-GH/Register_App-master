@@ -4,15 +4,15 @@ import "../../StyleComponent/projectdetail.css";
 export default function ProjectDetail({ showPopup, onClose }) {
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
-      <div className="popup-content">
-        <button className="close-button" onClick={onClose}>
+      <div className="popup-content-detail">
+      <button className="closebtn " onClick={onClose}>
           &times;
         </button>
         <div className="contentText">
-          <h2>Tech Scoop God</h2>
-          <p>Become a god of programer amoung noobs</p>
+          <h2>Project Name</h2>
+          <p>Project detail</p>
 
-          <table className="table table-bordered text-light">
+          <table className="table table-secondary table-bordered table-responsive text-light">
             <tbody>
               <tr>
                 <th>Position:</th>
@@ -31,15 +31,15 @@ export default function ProjectDetail({ showPopup, onClose }) {
                 <td>Bachelor's Degree</td>
               </tr>
               <tr>
-                <th>Responsibility:</th>
-                <td>Developing and maintaining software applications</td>
+                <th>Application Closing Date:</th>
+                <td>dd/mm/yyyy</td>
               </tr>
             </tbody>
-          </table>
+          </table>  
         </div>
         <button
           onClick={onClose}
-          className="btn btn-warning text-light d-flex justify-content-center "
+          className="btn btn-warning text-light d-flex justify-content-center link-dark"
           id="submitbtn"
         >
           Submit
