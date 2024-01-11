@@ -1,37 +1,48 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../../StyleComponent/forgetpass.css";
 import Swal from "sweetalert2";
 
-export default function ForgetPassword() {
+const ForgetPassword = () => {
+  const [email, setEmail] = useState("");
 
+  const handleAlert = async () => {
+    // Check email against the database
+    const emailExists = await checkEmailInDatabase(email);
 
-  const [email, setEmail] = useState('');
-
-  const handleAlert =()=>{
-    const emailCheck = {
-      email: "email@example.com"
-    }
-
-    const alertMessage = 
-    email === emailCheck.email ? { 
-      icon: "success",
-      title: "Reset Password Email has been sent"
-    } : {
-      icon: "error",
-      title: "Invalid Email"
-    };
+    // Use ternary operator to determine the alert message
+    const alertMessage = emailExists
+      ? {
+          icon: "success",
+          title: "Reset password has been sent",
+        }
+      : {
+          icon: "error",
+          title: "Invalid email",
+        };
 
     Swal.fire({
       position: "center",
       ...alertMessage,
       showConfirmButton: false,
-      timer: 2000,  
-    })
-  }
+      timer: 1650,
+    });
+  };
+
+  const checkEmailInDatabase = async (email) => {
+    // Replace this with an actual API call to check the email in your database
+    // For simplicity, using a hardcoded value here
+    return email === "email@example.com";
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission and page refresh
+    handleAlert();
+  };
+
   return (
     <div>
       <div className="forgetPass d-flex justify-content-center align-items-center">
-        <form className="text-center">
+        <form className="text-center" onSubmit={handleSubmit}>
           <h2>Forgot Password</h2>
           <p>Insert your email to receive the reset password verification</p>
           <div className="form-group">
@@ -40,14 +51,13 @@ export default function ForgetPassword() {
               className="form-control"
               placeholder="abc@gmail.com"
               value={email}
-              onChange={(e)=> setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
             <button
-              type="button"
+              type="submit" // Use type="submit" for the button
               className="btn btn-warning submitBtn"
-              onClick={handleAlert}
             >
               Submit
             </button>
@@ -56,4 +66,6 @@ export default function ForgetPassword() {
       </div>
     </div>
   );
-}
+};
+
+export default ForgetPassword;

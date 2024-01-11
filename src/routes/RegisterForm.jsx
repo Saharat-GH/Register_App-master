@@ -174,22 +174,19 @@
             <div>
             {success ?(
                 <div>
-                    <NavBar />
                     <section className='content_register_complete'>
                         <div className="regis_complete">
                             <h1 className=''>Register Completed</h1>
                             <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Redirect to Mainpage in 5 seccond</p>
                         </div>
                     </section>
-                    <Footer />
                 </div>
                 ):(
                     <div >
-                <NavBar />
                     <section className='content_register'>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"
                         >{errMsg}</p>
-                        <h1 className='h1'>Register</h1>
+                        <h1 className='h1 text-warning'>Register</h1>
                         <form className='regis_form' onSubmit={handleSubmit}>
                             <div className='name_lastname_content' >
                                 <div className="name_input">
@@ -454,10 +451,12 @@
                             
                         </form>
                     </section>    
-                <Footer />
                 </div>)}
             </div>
+            
         )
     }
 
     export default RegisterForm
+
+    const RegisterPage = () => <RegisterForm />;

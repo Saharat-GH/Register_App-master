@@ -1,8 +1,8 @@
 
 .content_register{
     background-color: #333;
-    width: 602px;
-    height: 722px;
+    width: auto;
+    height: 100vh;
     color: #fff;
     margin: auto; 
     display: flex; 
@@ -13,8 +13,8 @@
 
 .content_register_complete {
     background-color: #fff;
-    width: 602px;
-    height: 100vh;
+    width: auto;
+    height: auto;
     color: #000;
     margin: auto auto;
     display: flex;
@@ -31,7 +31,7 @@
 .regis_form {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
     flex-grow: 1;   
     margin: 10px;
 }

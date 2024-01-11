@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
 import { NavLink } from "react-router-dom";
 import { IoLogIn } from "react-icons/io5";
-import { IoIosMail } from "react-icons/io";
+import RegisterForm from "../routes/RegisterForm";
 
 export default function LoginPopup({ showPopup, onClose }) {
   const [email, setEmail] = useState("");

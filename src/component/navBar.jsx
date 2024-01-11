@@ -16,7 +16,7 @@ export default function NavBar() {
   return (
     <div>
       <header
-        className="d-flex align-items-center justify-content-between py-3 mb-4 border-bottom"
+        className="d-flex align-items-center justify-content-between py-1 mb-5 border-bottom"
         id="Nav"
       >
         <div className="col-md-3">
@@ -39,7 +39,7 @@ export default function NavBar() {
               </NavLink>
             </li>
           </ul>
-          
+
           <div className="text-end">
             <button
               type="button"
@@ -48,13 +48,22 @@ export default function NavBar() {
             >
               Login
             </button>
-            {login && <LoginPopup showPopup={login} onClick={openLogin} onClose={closeLogin} />}
-            <button
-              type="button"
-              className="btn btn-warning text-light link-dark "
-            >
-              Sign-up
-            </button>
+            {login && (
+              <LoginPopup
+                showPopup={login}
+                onClick={openLogin}
+                onClose={closeLogin}
+              />
+            )}
+            <NavLink to="/register">
+              <button
+                type="button"
+                className="btn btn-warning text-light link-dark"
+                style={{marginRight: '15px'}}
+              >
+                Sign-up
+              </button>
+            </NavLink>
           </div>
         </div>
       </header>

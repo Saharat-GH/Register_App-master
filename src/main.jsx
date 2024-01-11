@@ -13,6 +13,8 @@ import { Route } from "react-router-dom";
 import RootLeyout from "./component/RootLeyout";
 import UserMainPage from "./routes/UserMainPage";
 import ForgetPassword from "./component/ForgetPassword";
+import RegisterForm from "./routes/RegisterForm";
+import RegisterPage from "./component/RegisterPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +26,8 @@ const router = createBrowserRouter(
       <Route path="hr">
         <Route path="createproject" element={<HRCreateProject />} />
       </Route>
-      <Route path="forgot" element={<ForgetPassword/>} />
+      <Route path="forgot" element={<ForgetPassword />} />
+      <Route path="register" element={<RegisterPage />} />
     </Route>
   )
 );

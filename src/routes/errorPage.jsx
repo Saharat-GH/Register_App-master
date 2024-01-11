@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "../component/navBar";
-import Footer from "../component/footer";
 import { Link } from "react-router-dom";
 
 function ErrorPage() {
@@ -14,12 +13,11 @@ function ErrorPage() {
           <p className="lead">
             We're sorry, but there seems to be an error. Please try again later.
           </p>
-          <Link to="/" className="btn btn-primary">
+          <Link to="/home" className="btn btn-primary">
             Back to Home
           </Link>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
