@@ -16,7 +16,7 @@ export default function NavBar() {
   return (
     <div>
       <header
-        className="d-flex align-items-center justify-content-between py-1 mb-5 border-bottom"
+        className="d-flex align-items-center justify-content-between py-1 mb-5 border- bg-dark"
         id="Nav"
       >
         <div className="col-md-3">

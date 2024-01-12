@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
-
+import NavBar from '../component/navBar.jsx'
+import Footer from '../component/footer.jsx'
+import '../../StyleComponent/index.css'
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
@@ -32,7 +33,10 @@ function HRCreateProject() {
   };
 
   return (
-    <div className="Body bg-light">
+    <div>
+
+      <NavBar/>
+    <div className="bg-light d-flex vh-100">
       {" "}
       {/* Add custom class for background color */}
       <div className="container mt-5">
@@ -52,7 +56,7 @@ function HRCreateProject() {
                 onChange={(e) => setProjectName(e.target.value)}
                 placeholder="Enter project name"
                 required
-              />
+                />
             </div>
 
             {/* Project Detail */}
@@ -68,7 +72,7 @@ function HRCreateProject() {
                 onChange={(e) => setProjectDetail(e.target.value)}
                 placeholder="Enter project detail"
                 required
-              ></textarea>
+                ></textarea>
             </div>
 
             {/* Application Starting Date */}
@@ -83,7 +87,7 @@ function HRCreateProject() {
                 // value={formatDate(startingDate)}
                 onChange={(e) => setStartingDate(e.target.value)}
                 required
-              />
+                />
             </div>
 
             {/* Application Closing Date */}
@@ -98,7 +102,7 @@ function HRCreateProject() {
                 // value={formatDate(startingDate)}
                 onChange={(e) => setClosingDate(e.target.value)}
                 required
-              />
+                />
             </div>
 
 
@@ -112,7 +116,7 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectSalary}
                 onChange={(e) => setProjectSalary(e.target.value)}
-              />
+                />
             </div>
 
             <div className="mb-3">
@@ -126,7 +130,7 @@ function HRCreateProject() {
                 value={projectPosition}
                 placeholder="Enter position"
                 onChange={(e) => setProjectPosition(e.target.value)}
-              />
+                />
             </div>
 
             <div className="mb-3">
@@ -139,7 +143,7 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectAmount}
                 onChange={(e) => setProjectAmount(e.target.value)}
-              />
+                />
             </div>
 
             <div className="mb-3">
@@ -151,7 +155,7 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectEducation}
                 onChange={(e) => setProjectEducation(e.target.value)}
-              >
+                >
                 <option value="">Select Education</option>
                 <option value="High School">High School</option>
                 <option value="Bachelor's Degree">Bachelor's Degree</option>
@@ -172,11 +176,11 @@ function HRCreateProject() {
                 className="form-control"
                 value={projectImage}
                 onChange={(e) => setProjectImage(e.target.value)}
-              />
+                />
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-warning link-light text-dark">
               Create Project
             </button>
           </form>
@@ -186,6 +190,8 @@ function HRCreateProject() {
       <br />
       <br />
     </div>
+    <Footer/>
+</div>
   );
 }
 
@@ -193,11 +199,11 @@ export default HRCreateProject;
 
 {
   /* HR Email List
-<div className="mb-3">
-<label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
-{HREmails.map((email, index) => (
-  <div key={index} className="mb-2">
-  <input
+  <div className="mb-3">
+  <label htmlFor="HREmailList" className="form-label">HR permissions email list:</label>
+  {HREmails.map((email, index) => (
+    <div key={index} className="mb-2">
+    <input
         type="text"
         id={`HREmailList${index}`}
         className="form-control"

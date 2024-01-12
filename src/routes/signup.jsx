@@ -5,6 +5,9 @@ import Footer from "../component/footer";
 function SignUp() {
     return (
     <div className="Body">
+        
+        <ProjectBox/>
+        <ProjectBox/>
         <ProjectBox/>
     </div>
     )

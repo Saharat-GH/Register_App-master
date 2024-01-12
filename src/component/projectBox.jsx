@@ -19,7 +19,7 @@ export default function ProjectBox() {
             <img src="https://assets.justinmind.com/wp-content/uploads/2018/11/Lorem-Ipsum-alternatives-768x492.png" alt="" style={{ maxWidth: "200px" }}/>
           </div>
           <div className="col-md-9" >
-            <div className="card-body"id="ProjectBox" style={{ boxShadow: '4px 4px 1px orange' }}>
+            <div className="card-body bg-dark "id="ProjectBox" style={{ boxShadow: '4px 4px 1px orange' }}>
               <h5 className="card-title text-light">Lorem</h5>
               <p className="card-text text-light">
                 This is a wider card with supporting text below as a natural

@@ -15,11 +15,13 @@ import UserMainPage from "./routes/UserMainPage";
 import ForgetPassword from "./component/ForgetPassword";
 import RegisterForm from "./routes/RegisterForm";
 import RegisterPage from "./component/RegisterPage";
+import HrPage from "./routes/HrPage";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLeyout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: '/',
@@ -37,6 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'hr',
+    element: <HrPage />,
     children: [
       {
         path: 'createproject',
