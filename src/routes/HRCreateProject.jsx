@@ -161,7 +161,6 @@ function HRCreateProject() {
                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                 <option value="Master's Degree">Master's Degree</option>
                 <option value="PhD">PhD</option>
-                {/* Add more options as needed */}
               </select>
             </div>
 
