@@ -26,7 +26,7 @@ export default function ProjectBox() {
                 lead-in to additional content. This content is a little bit
                 longer. 
               </p>
-              <button onClick={TogglePopup} className="btn btn-warning text-light link-dark" style={{ position: "absolute", bottom: 10, right: 10}}>
+              <button onClick={TogglePopup} className="btn btn-warning text-light link-dark lh-1" style={{ position: "absolute", bottom: 10, right: 10}}>
                 Submit
               </button>
               {popup && <ProjectDetail showPopup={popup} onClose={TogglePopup}/>}

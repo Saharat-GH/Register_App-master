@@ -75,16 +75,22 @@ export default function LoginPopup({ showPopup, onClose }) {
 
             <button
               type="button"
-              className="btn btn-warning text-light link-dark"
+              className="btn btn-warning text-light link-dark lh-1"
               onClick={handleLogin}
             >
               Login <IoLogIn />
             </button>
             <div className="signupbtn">
               <p href="#">
-                or Sign up
+                or Sign up{" "}
                 <span>
-                  <a href="#">here</a>
+                 <NavLink
+                 to="/register"
+                 style={{textDecoration: "none"}}
+                 onClick={onClose}
+                 >
+                  here
+                 </NavLink>
                 </span>
               </p>
             </div>

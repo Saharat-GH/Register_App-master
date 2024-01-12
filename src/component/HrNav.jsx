@@ -34,7 +34,7 @@ export default function HrNav() {
           <ul className="nav justify-content-center mb-md-0 me-3">
             <li>
               <NavLink
-                to="/createproject"
+                to="/profile"
                 className="nav-link px-2 text-warning link-secondary"
               >
                 Account

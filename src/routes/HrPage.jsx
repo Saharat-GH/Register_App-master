@@ -1,6 +1,6 @@
 import React from 'react'
 import HrNav from '../component/HrNav'
-import ProjectBox from '../component/projectBox'
+import ProjectBox from '../component/ProjectBox'
 
 export default function HrPage() {
 
