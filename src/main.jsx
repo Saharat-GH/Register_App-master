@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
@@ -16,8 +16,36 @@ import ForgetPassword from "./component/ForgetPassword";
 import RegisterForm from "./routes/RegisterForm";
 import RegisterPage from "./component/RegisterPage";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLeyout />,
+    children: [
+      {
+        path: '/',
+        element: <SignUp/>
+      },
+      {
+        path: 'register',
+        element: <RegisterForm />
+      },
+      {
+        path: 'forgot',
+        element: <ForgetPassword />
+      },
+    ],
+  },
+  {
+    path: 'hr',
+    children: [
+      {
+        path: 'createproject',
+        element: <HRCreateProject />
+      },
+    ],
+  },
+]);
+  /* createRoutesFromElements(
     <Route path="/" element={<RootLeyout />}>
       <Route index element={<SignUp />} />
       <Route path="user" element={<SignUp />}/>
@@ -29,8 +57,8 @@ const router = createBrowserRouter(
       <Route path="forgot" element={<ForgetPassword />} />
       <Route path="register" element={<RegisterPage />} />
     </Route>
-  )
-);
+  ) */
+ 
 
 // [
 //   {
