@@ -395,7 +395,7 @@
                                 {pwdFocus && <Overlay target={pwdRef.current} show={!validPwd} placement="right">
                                     {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
-                                        8 to 24 characters. <br />
+                                        8 to 24 english characters. <br />
                                         Must include uppercase and lowercase letters, a number and a special character. <br />
                                         Allowed special characters : <span aria-label="exclamation">!</span>
                                         <span aria-label="at symbol">@</span>
