@@ -10,13 +10,12 @@ import Tooltip from "react-bootstrap/Tooltip";
 import TermOfService from "./TermOfService";
 import { NavLink } from "react-router-dom";
 
-const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
-const REGISTER_URL = "/register";
-const PHONE_REGEX = /^[0-9]{10,10}$/;
-const EMAIL_REGEX =
-  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
+    const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
+    const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+    const REGISTER_URL = '/register';
+    const PHONE_REGEX = /^0[689]\d{8}$/;
+    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
 
 function RegisterForm() {
   const nameRef = useRef();
@@ -128,6 +127,7 @@ function RegisterForm() {
   const navigate = useNavigate();
 
   /* useEffect(() => {
+        useEffect(() => {
             if (success) {
             const timeoutId = setTimeout(() => {
                 navigate('/mainpage');
@@ -135,7 +135,7 @@ function RegisterForm() {
         
             return () => clearTimeout(timeoutId);
             }
-        }, [success, navigate]); */
+        }, [success, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -334,24 +334,78 @@ function RegisterForm() {
                   onChange={(e) => setPhone(e.target.value)}
                   required
                   /* aria-invalid = {validPhone ? "false" : "true"}
+                                        onFocus={() => setLastNameFocus(true)}
+                                        onBlur={() => setLastNameFocus(false)}
+                                    />
+                                    {lastNameFocus &&<Overlay target={lastNameRef.current} show={!validLastName} placement="right">
+                                        {(props) => (
+                                        <Tooltip id="overlay-example" {...props}>
+                                            4 to 24 characters.<br/>
+                                        </Tooltip>
+                                        )}
+                                    </Overlay>} 
+                                </div>
+                            </div>
+                            
+                            <div className='userEducation_box'>
+                                <label htmlFor="userEducation" className="form-label">
+                                    Project Education 
+                                </label>
+                                <select
+                                    id="userEducation"
+                                    ref={eduRef}
+                                    className="form-control"
+                                    value={userEducation || ''} //set the value to '' when first start will has and empty value string
+                                    onChange={(e) => setUserEducation(e.target.value)}
+                                    required
+                                    onClick={() => setUserEducationFocus(true)}
+                                    onBlur={() => setUserEducationFocus(false)}
+                                >
+                                    <option value="" disabled defaultValue>Select Education</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                    <option value="Master's Degree">Master's Degree</option>
+                                    <option value="PhD">PhD</option>
+                                </select>
+                                {userEducationFocus && <Overlay target={eduRef.current} show={!validUserEducation} placement="right">
+                                    {(props) => (
+                                    <Tooltip id="overlay-example" {...props}>
+                                        Please select your education
+                                    </Tooltip>
+                                    )}
+                                </Overlay>} 
+                            </div>
+                            
+                            <div className='phone_box'>
+                                <label htmlFor="phone">
+                                    Phone numeber :
+                                    <span className={validPhone ? "valid" : "hide"}>
+                                        Correct
+                                    </span>
+                                    <span className={validPhone || !phone ? "hide" : "invalid"}>
+                                        Incorrect
+                                    </span>
+                                </label>
+                                <input type="number" 
+                                    id="phone"
+                                    ref={phoneRef}
+                                    autoComplete="off"
+                                    onChange={(e) =>setPhone(e.target.value)}
+                                    required
+                                    maxLength={10}
+                                    /* aria-invalid = {validPhone ? "false" : "true"}
                                     aria-describedby="overlay-phone" */
-                  onFocus={() => setPhoneFocus(true)}
-                  onBlur={() => setPhoneFocus(false)}
-                />
-                {phoneFocus && (
-                  <Overlay
-                    target={phoneRef.current}
-                    show={!validPhone}
-                    placement="right"
-                  >
-                    {(props) => (
-                      <Tooltip id="overlay-phone" {...props}>
-                        Only number and not more than 10 digits.
-                      </Tooltip>
-                    )}
-                  </Overlay>
-                )}
-              </div>
+                                    onFocus={() => setPhoneFocus(true)}
+                                    onBlur={() => setPhoneFocus(false)}
+                                />
+                                {phoneFocus && <Overlay target={phoneRef.current} show={!validPhone} placement="right">
+                                    {(props) => (
+                                    <Tooltip id="overlay-phone" {...props}>
+                                        Start with 0 , Only number and not more than 10 digits.
+                                    </Tooltip>
+                                    )}
+                                </Overlay>}
+                            </div>
 
               <div className="address_box">
                 <label htmlFor="address">
@@ -440,31 +494,23 @@ function RegisterForm() {
                   required
                   /* aria-invalid={validPwd ? "false" : "true"}
                                     aria-describedby="pwdnote" */
-                  onFocus={() => setPwdFocus(true)}
-                  onBlur={() => setPwdFocus(false)}
-                />
-                {pwdFocus && (
-                  <Overlay
-                    target={pwdRef.current}
-                    show={!validPwd}
-                    placement="right"
-                  >
-                    {(props) => (
-                      <Tooltip id="overlay-example" {...props}>
-                        8 to 24 characters. <br />
-                        Must include uppercase and lowercase letters, a number
-                        and a special character. <br />
-                        Allowed special characters :{" "}
-                        <span aria-label="exclamation">!</span>
-                        <span aria-label="at symbol">@</span>
-                        <span aria-label="hashtag">#</span>
-                        <span aria-label="dollar sign">$</span>
-                        <span aria-label="percent">%</span>
-                      </Tooltip>
-                    )}
-                  </Overlay>
-                )}
-              </div>
+                                    onFocus={() => setPwdFocus(true)}
+                                    onBlur={() => setPwdFocus(false)}
+                                />
+                                {pwdFocus && <Overlay target={pwdRef.current} show={!validPwd} placement="right">
+                                    {(props) => (
+                                    <Tooltip id="overlay-example" {...props}>
+                                        8 to 24 english characters. <br />
+                                        Must include uppercase and lowercase letters, a number and a special character. <br />
+                                        Allowed special characters : <span aria-label="exclamation">!</span>
+                                        <span aria-label="at symbol">@</span>
+                                        <span aria-label="hashtag">#</span>
+                                        <span aria-label="dollar sign">$</span>
+                                        <span aria-label="percent">%</span>
+                                    </Tooltip>
+                                    )}
+                                </Overlay>}
+                            </div>
 
               <div className="pwdMatch_box">
                 <label htmlFor="confirm_pwd">
