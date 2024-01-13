@@ -12,7 +12,7 @@
     const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
     const REGISTER_URL = '/register';
-    const PHONE_REGEX = /^[0-9]{10,10}$/;
+    const PHONE_REGEX = /^0[689]\d{8}$/;
     const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
 
@@ -125,7 +125,7 @@
 
         const navigate = useNavigate();
 
-        /* useEffect(() => {
+        useEffect(() => {
             if (success) {
             const timeoutId = setTimeout(() => {
                 navigate('/mainpage');
@@ -133,7 +133,7 @@
         
             return () => clearTimeout(timeoutId);
             }
-        }, [success, navigate]); */
+        }, [success, navigate]);
 
         
 
@@ -294,12 +294,13 @@
                                         Incorrect
                                     </span>
                                 </label>
-                                <input type="text" 
+                                <input type="number" 
                                     id="phone"
                                     ref={phoneRef}
                                     autoComplete="off"
                                     onChange={(e) =>setPhone(e.target.value)}
                                     required
+                                    maxLength={10}
                                     /* aria-invalid = {validPhone ? "false" : "true"}
                                     aria-describedby="overlay-phone" */
                                     onFocus={() => setPhoneFocus(true)}
@@ -308,7 +309,7 @@
                                 {phoneFocus && <Overlay target={phoneRef.current} show={!validPhone} placement="right">
                                     {(props) => (
                                     <Tooltip id="overlay-phone" {...props}>
-                                        Only number and not more than 10 digits.
+                                        Start with 0 , Only number and not more than 10 digits.
                                     </Tooltip>
                                     )}
                                 </Overlay>}
