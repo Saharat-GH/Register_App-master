@@ -19,8 +19,8 @@ export default function NavBar() {
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-warning me-2">Login</button>
-        <button type="button" class="btn btn-warning text-light" style={{marginRight: 'px'}}>Sign-up</button>
+        <button type="button" class="btn btn-outline-warning me-2"> <a href="http://localhost:5173/login">Login</a></button>
+        <button type="button" class="btn btn-warning text-light" style={{marginRight: 'px'}}> <a href="http://localhost:5173/">Sign-up</a> </button>
       </div>
     </header>
     </div>
