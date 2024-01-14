@@ -12,7 +12,7 @@ export default function ProjectBox() {
   
 
   return (
-    <div className="container d-flex justify-content-center" >
+    <div className="container d-flex justify-content-center mb-3" >
       <div className="card mb-3" style={{ maxWidth: "800px"}}>
         <div className="row g-0 ">
           <div className="col-md-3" style={{ boxShadow: '5px 4px 1px orange' }}>

@@ -1,21 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import NavBar from "../component/์NavBar";
-import Footer from "../component/Footer";
+import Footer from "../component/footer";
 import axios from "../api/axios";
 import "../../StyleComponent/RegisterForm.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
-import TermOfService from "./TermOfService";
-import { NavLink } from "react-router-dom";
-
-    const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
-    const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
-    const REGISTER_URL = '/register';
-    const PHONE_REGEX = /^0[689]\d{8}$/;
-    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
+import NavBar from "../component/์NavBar";
+const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+const REGISTER_URL = "/register";
+const PHONE_REGEX = /^0[689]\d{8}$/;
+const EMAIL_REGEX =
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
 
 function RegisterForm() {
   const nameRef = useRef();
@@ -126,16 +124,15 @@ function RegisterForm() {
 
   const navigate = useNavigate();
 
-  /* useEffect(() => {
-        useEffect(() => {
-            if (success) {
-            const timeoutId = setTimeout(() => {
-                navigate('/mainpage');
-            }, 4000);
-        
-            return () => clearTimeout(timeoutId);
-            }
-        }, [success, navigate]);
+  useEffect(() => {
+    if (success) {
+      const timeoutId = setTimeout(() => {
+        navigate("/");
+      }, 4000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [success, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -148,15 +145,15 @@ function RegisterForm() {
     }
     try {
       /* const response = await axios.post(REGISTER_URL, 
-                    JSON.stringify({name, lastName , email, pwd , phone, education,address}),
-                    {
-                        headers: { 'Content-Type': 'application/json' },
-                        withCredentials: true
-                    }
-                ); */
+                JSON.stringify({name, lastName , email, pwd , phone, education,address}),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            ); */
       /* console.log(response.data);
-                console.log(response.accessToken);
-                console.log(Json.stringify(response)); */
+            console.log(response.accessToken);
+            console.log(Json.stringify(response)); */
       setSuccess(true);
     } catch (error) {
       if (!error?.response) {
@@ -172,12 +169,16 @@ function RegisterForm() {
 
   return (
     <div>
+      <NavBar />
       {success ? (
         <div>
           <section className="content_register_complete">
             <div className="regis_complete">
-              <h1>Register Completed</h1>
-              <p>Redirect to Mainpage in 5 second</p>
+              <h1 className="">Register Completed</h1>
+              <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Redirect
+                to Mainpage in 5 seccond
+              </p>
             </div>
           </section>
         </div>
@@ -191,7 +192,7 @@ function RegisterForm() {
             >
               {errMsg}
             </p>
-            <h1 className="h1 text-warning">Register</h1>
+            <h1 className="h1">Register</h1>
             <form className="regis_form" onSubmit={handleSubmit}>
               <div className="name_lastname_content">
                 <div className="name_input">
@@ -215,7 +216,7 @@ function RegisterForm() {
                     onChange={(e) => setName(e.target.value)}
                     required
                     /* aria-invalid = {validName ? "false" : "true"}
-                                        aria-describedby="nameNote" */
+                                    aria-describedby="nameNote" */
                     onFocus={() => setNameFocus(true)}
                     onBlur={() => setNameFocus(false)}
                   />
@@ -260,7 +261,7 @@ function RegisterForm() {
                     onChange={(e) => setLastName(e.target.value)}
                     required
                     /* aria-invalid = {validLastName ? "false" : "true"}
-                                        aria-describedby="lastNameNote" */
+                                    aria-describedby="lastNameNote" */
                     onFocus={() => setLastNameFocus(true)}
                     onBlur={() => setLastNameFocus(false)}
                   />
@@ -327,85 +328,32 @@ function RegisterForm() {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="phone"
                   ref={phoneRef}
                   autoComplete="off"
                   onChange={(e) => setPhone(e.target.value)}
                   required
+                  maxLength={10}
                   /* aria-invalid = {validPhone ? "false" : "true"}
-                                        onFocus={() => setLastNameFocus(true)}
-                                        onBlur={() => setLastNameFocus(false)}
-                                    />
-                                    {lastNameFocus &&<Overlay target={lastNameRef.current} show={!validLastName} placement="right">
-                                        {(props) => (
-                                        <Tooltip id="overlay-example" {...props}>
-                                            4 to 24 characters.<br/>
-                                        </Tooltip>
-                                        )}
-                                    </Overlay>} 
-                                </div>
-                            </div>
-                            
-                            <div className='userEducation_box'>
-                                <label htmlFor="userEducation" className="form-label">
-                                    Project Education 
-                                </label>
-                                <select
-                                    id="userEducation"
-                                    ref={eduRef}
-                                    className="form-control"
-                                    value={userEducation || ''} //set the value to '' when first start will has and empty value string
-                                    onChange={(e) => setUserEducation(e.target.value)}
-                                    required
-                                    onClick={() => setUserEducationFocus(true)}
-                                    onBlur={() => setUserEducationFocus(false)}
-                                >
-                                    <option value="" disabled defaultValue>Select Education</option>
-                                    <option value="High School">High School</option>
-                                    <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                    <option value="Master's Degree">Master's Degree</option>
-                                    <option value="PhD">PhD</option>
-                                </select>
-                                {userEducationFocus && <Overlay target={eduRef.current} show={!validUserEducation} placement="right">
-                                    {(props) => (
-                                    <Tooltip id="overlay-example" {...props}>
-                                        Please select your education
-                                    </Tooltip>
-                                    )}
-                                </Overlay>} 
-                            </div>
-                            
-                            <div className='phone_box'>
-                                <label htmlFor="phone">
-                                    Phone numeber :
-                                    <span className={validPhone ? "valid" : "hide"}>
-                                        Correct
-                                    </span>
-                                    <span className={validPhone || !phone ? "hide" : "invalid"}>
-                                        Incorrect
-                                    </span>
-                                </label>
-                                <input type="number" 
-                                    id="phone"
-                                    ref={phoneRef}
-                                    autoComplete="off"
-                                    onChange={(e) =>setPhone(e.target.value)}
-                                    required
-                                    maxLength={10}
-                                    /* aria-invalid = {validPhone ? "false" : "true"}
-                                    aria-describedby="overlay-phone" */
-                                    onFocus={() => setPhoneFocus(true)}
-                                    onBlur={() => setPhoneFocus(false)}
-                                />
-                                {phoneFocus && <Overlay target={phoneRef.current} show={!validPhone} placement="right">
-                                    {(props) => (
-                                    <Tooltip id="overlay-phone" {...props}>
-                                        Start with 0 , Only number and not more than 10 digits.
-                                    </Tooltip>
-                                    )}
-                                </Overlay>}
-                            </div>
+                                aria-describedby="overlay-phone" */
+                  onFocus={() => setPhoneFocus(true)}
+                  onBlur={() => setPhoneFocus(false)}
+                />
+                {phoneFocus && (
+                  <Overlay
+                    target={phoneRef.current}
+                    show={!validPhone}
+                    placement="right"
+                  >
+                    {(props) => (
+                      <Tooltip id="overlay-phone" {...props}>
+                        Start with 0 , Only number and not more than 10 digits.
+                      </Tooltip>
+                    )}
+                  </Overlay>
+                )}
+              </div>
 
               <div className="address_box">
                 <label htmlFor="address">
@@ -459,7 +407,7 @@ function RegisterForm() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   /* aria-invalid = {validEmail ? "false" : "true"}
-                                    aria-describedby='emailnote' */
+                                aria-describedby='emailnote' */
                   onFocus={() => setEmailFocus(true)}
                   onBlur={() => setEmailFocus(false)}
                 />
@@ -493,24 +441,32 @@ function RegisterForm() {
                   onChange={(e) => setPwd(e.target.value)}
                   required
                   /* aria-invalid={validPwd ? "false" : "true"}
-                                    aria-describedby="pwdnote" */
-                                    onFocus={() => setPwdFocus(true)}
-                                    onBlur={() => setPwdFocus(false)}
-                                />
-                                {pwdFocus && <Overlay target={pwdRef.current} show={!validPwd} placement="right">
-                                    {(props) => (
-                                    <Tooltip id="overlay-example" {...props}>
-                                        8 to 24 english characters. <br />
-                                        Must include uppercase and lowercase letters, a number and a special character. <br />
-                                        Allowed special characters : <span aria-label="exclamation">!</span>
-                                        <span aria-label="at symbol">@</span>
-                                        <span aria-label="hashtag">#</span>
-                                        <span aria-label="dollar sign">$</span>
-                                        <span aria-label="percent">%</span>
-                                    </Tooltip>
-                                    )}
-                                </Overlay>}
-                            </div>
+                                aria-describedby="pwdnote" */
+                  onFocus={() => setPwdFocus(true)}
+                  onBlur={() => setPwdFocus(false)}
+                />
+                {pwdFocus && (
+                  <Overlay
+                    target={pwdRef.current}
+                    show={!validPwd}
+                    placement="right"
+                  >
+                    {(props) => (
+                      <Tooltip id="overlay-example" {...props}>
+                        8 to 24 english characters. <br />
+                        Must include uppercase and lowercase letters, a number
+                        and a special character. <br />
+                        Allowed special characters :{" "}
+                        <span aria-label="exclamation">!</span>
+                        <span aria-label="at symbol">@</span>
+                        <span aria-label="hashtag">#</span>
+                        <span aria-label="dollar sign">$</span>
+                        <span aria-label="percent">%</span>
+                      </Tooltip>
+                    )}
+                  </Overlay>
+                )}
+              </div>
 
               <div className="pwdMatch_box">
                 <label htmlFor="confirm_pwd">
@@ -529,7 +485,7 @@ function RegisterForm() {
                   onChange={(e) => setMatchPwd(e.target.value)}
                   required
                   /* aria-invalid={validMatch ? "false" : "true"}  
-                                    aria-describedby="confirmnote" */
+                                aria-describedby="confirmnote" */
                   onFocus={() => setMatchFocus(true)}
                   onBlur={() => setMatchFocus(false)}
                 />
@@ -554,20 +510,26 @@ function RegisterForm() {
                   id="checkbox"
                   required
                   /* aria-invalid={validCheckBox ? "false" : "true"}
-                                    aria-describedby="checkboxnote" */
+                                aria-describedby="checkboxnote" */
                   onChange={(e) => setValidCheckBox(e.target.value)}
                 />
+
                 <span id="checkboxnote">
-                  &nbsp;accept the{" "}
-                  <NavLink to="/term-of-service">Terms of Service</NavLink>
-                  {" & "}
-                  <NavLink to="/privacy-policy">Privacy Policy</NavLink>.
+                  &nbsp;accept the
+                  <Link to="/term-of-service" target="_blank">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/privacy-policy" target="_blank">
+                    Privacy Policy
+                  </Link>
+                  .
                 </span>
               </div>
 
               <div className="submit_btn_box">
                 <button
-                  className="btn btn-warning submit_btn"
+                  class="btn btn-warning submit_btn"
                   disabled={
                     !validName ||
                     !validLastName ||
@@ -593,5 +555,3 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
-
-const RegisterPage = () => <RegisterForm />;

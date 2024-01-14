@@ -75,7 +75,7 @@ export default function LoginPopup({ showPopup, onClose }) {
 
             <button
               type="button"
-              className="btn btn-warning text-light link-dark lh-1"
+              className="btn btn-warning text-light link-dark lh-1 mt-5"
               onClick={handleLogin}
             >
               Login <IoLogIn />

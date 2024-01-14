@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import NavBar from "../component/์NavBar.jsx";
-import Footer from "../component/Footer.jsx";
+import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
 function HRCreateProject() {
   // State for form fields
@@ -34,7 +33,7 @@ function HRCreateProject() {
 
   return (
     <div>
-      <NavBar />
+      <HrNav/>
       <div className="vh-100">
         {" "}
         {/* Add custom class for background color */}

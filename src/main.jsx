@@ -11,7 +11,7 @@ import ErrorPage from "./routes/ErrorPage";
 import { Route } from "react-router-dom";
 import RootLayout from "./component/RootLayout";
 import UserMainPage from "./routes/UserMainPage";
-import ForgetPassword from "./component/ForgetPassword";
+import ForgetPassword from "./routes/ForgetPassword";
 import RegisterForm from "./routes/RegisterForm";
 import RegisterPage from "./component/RegisterPage";
 import HrPage from "./routes/HrPage";
@@ -23,28 +23,26 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <UserMainPage />,
-      },
-      {
-        path: "/register",
-        element: <RegisterForm />,
-      },
-      {
-        path: "/forgot",
-        element: <ForgetPassword />,
-      },
-      {
-        path: "/term-of-service",
-        element: <TermOfService />,
-      },
-      {
-        path: "/privacy-policy",
-        element: <PrivacyPolicy/>
-      }
-    ],
+  },
+  {
+    path: "/",
+    element: <UserMainPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterForm />,
+  },
+  {
+    path: "/forgot",
+    element: <ForgetPassword />,
+  },
+  {
+    path: "/term-of-service",
+    element: <TermOfService />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
   },
 
   {

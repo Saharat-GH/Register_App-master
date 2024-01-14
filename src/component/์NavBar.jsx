@@ -20,7 +20,7 @@ export default function NavBar() {
   return (
     <div>
       <header
-        className="d-flex align-items-center justify-content-between py-1 mb-5 border- "
+        className="d-flex align-items-center justify-content-between py-1 border-"
         style={{backgroundColor: '#333'}}
         id="Nav"
       >
@@ -41,6 +41,17 @@ export default function NavBar() {
                 className="nav-link px-2 text-warning link-secondary"
               >
                 Home
+              </NavLink>
+            </li>
+          </ul>
+
+          <ul className="nav justify-content-center mb-md-0 me-3">
+            <li>
+              <NavLink
+                to="/hr"
+                className="nav-link px-2 text-warning link-secondary"
+              >
+                HR
               </NavLink>
             </li>
           </ul>

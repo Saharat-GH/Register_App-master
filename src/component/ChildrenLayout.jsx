@@ -1,13 +1,14 @@
 // DefaultLayout.js
 import React from 'react';
 import NavBar from './์NavBar';
-import Footer from './Footer';
 
 const ChildrenLayout = ({ children }) => (
   <div>
+    <div className="mb-5">
     <NavBar />
+
+    </div>
     {children}
-    {/* <Footer /> */}
   </div>
 );
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../StyleComponent/forgetpass.css";
 import Swal from "sweetalert2";
+import NavBar from "../component/์NavBar";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -41,6 +42,10 @@ const ForgetPassword = () => {
 
   return (
     <div>
+      <div className="mb-5">
+
+      <NavBar/>
+      </div>
       <div className="forgetPass d-flex justify-content-center align-items-center">
         <form className="text-center" onSubmit={handleSubmit}>
           <h2>Forgot Password</h2>
@@ -49,7 +54,7 @@ const ForgetPassword = () => {
             <input
               type="email"
               className="form-control"
-              placeholder="abc@gmail.com"
+              placeholder="email@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
