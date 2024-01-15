@@ -18,7 +18,7 @@ export default function ProjectDetail(props) {
         console.log("New status added");
       })
       .catch((error) => {
-        console.error("Error adding project status:", error);
+        console.error("Error adding project status: ", error);
       });
 
     const userProject = {
@@ -33,7 +33,7 @@ export default function ProjectDetail(props) {
         console.log("New Project added");
       })
       .catch((error) => {
-        console.error("Error adding project:", error);
+        console.error("Error adding project: ", error);
       })
     onClose();
   };
