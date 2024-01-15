@@ -1,34 +1,71 @@
 // AuthPopup.js
-import React, { useState } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../StyleComponent/Login.css";
 import { NavLink } from "react-router-dom";
 import { IoLogIn } from "react-icons/io5";
 import RegisterForm from "../routes/RegisterForm";
+import AuthContext from "../context/AuthProvider";
+import axios from "../api/axios";
 
 export default function LoginPopup({ showPopup, onClose }) {
+  const { setAuth } = useContext(AuthContext);
+  const emailRef = useRef();
+  const errRef = useRef();
+
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
+  const [pwd, setPwd] = useState(""); // Changed from 'password' to 'pwd'
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [popup, setPopup] = useState(false);
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
-  const handleLogin = () => {
-    // Add your login logic here
-    setLogin(true);
-  };
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, pwd]);
 
-  const handleLogout = () => {
-    setLogin(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ email, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ email, pwd, roles, accessToken });
+      setEmail("");
+      setPwd("");
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No server response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing email or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login failed");
+      }
+      errRef.current.focus();
+    }
   }
 
-  const handleRegister = () => {
-    // Add your register logic here
-    console.log(
-      "Register clicked with email:",
-      email,
-      "and password:",
-      password
-    );
-  };
+  const handlePopupOn=()=>{
+    setPopup(true)
+  }
+
+  const handlePopupClose=()=>{
+    setPopup(false)
+  }
 
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
@@ -41,7 +78,7 @@ export default function LoginPopup({ showPopup, onClose }) {
           <form>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
-                Email 
+                Email
               </label>
               <input
                 type="email"
@@ -49,8 +86,9 @@ export default function LoginPopup({ showPopup, onClose }) {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                ref={emailRef} 
                 required
-              />  
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
@@ -60,8 +98,8 @@ export default function LoginPopup({ showPopup, onClose }) {
                 type="password"
                 className="form-control"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={pwd}
+                onChange={(e) => setPwd(e.target.value)}
                 required
               />
               <NavLink
@@ -75,8 +113,8 @@ export default function LoginPopup({ showPopup, onClose }) {
 
             <button
               type="button"
-              className="btn btn-warning text-light link-dark lh-1 mt-5"
-              onClick={handleLogin}
+              className="btn btn-warning text-light link-dark lh-1 mb-auto mt-auto"
+              onClick={handlePopupOn}
             >
               Login <IoLogIn />
             </button>
@@ -84,13 +122,13 @@ export default function LoginPopup({ showPopup, onClose }) {
               <p href="#">
                 or Sign up{" "}
                 <span>
-                 <NavLink
-                 to="/register"
-                 style={{textDecoration: "none"}}
-                 onClick={onClose}
-                 >
-                  here
-                 </NavLink>
+                  <NavLink
+                    to="/register"
+                    style={{ textDecoration: "none" }}
+                    onClick={handlePopupClose}
+                  >
+                    here
+                  </NavLink>
                 </span>
               </p>
             </div>

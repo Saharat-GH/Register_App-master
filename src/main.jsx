@@ -17,6 +17,8 @@ import RegisterPage from "./component/RegisterPage";
 import HrPage from "./routes/HrPage";
 import { AuthProvider } from './context/AuthProvider';
 import Login from './component/Login';
+import TermOfService from './routes/TermOfService';
+import PrivacyPolicy from './routes/PrivacyPolicy';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <HRCreateProject />,
   },
+  {
+    path: "/Login",
+    element: <Login />,
+  }
 ]);
 /* createRoutesFromElements(
     <Route path="/" element={<RootLeyout />}>
@@ -81,8 +87,23 @@ const router = createBrowserRouter([
 //   }
 // ]
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+  const App = () => {
+    return (
+      <React.StrictMode>
+        <RouterProvider router={router}>
+          <div>
+          <AuthProvider>
+            <UserMainPage />
+          </AuthProvider>
+          <RegisterForm />
+          </div>
+          
+        </RouterProvider>
+      </React.StrictMode>
+    );
+  };
+  
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <App />
+  )

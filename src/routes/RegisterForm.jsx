@@ -529,7 +529,7 @@ function RegisterForm() {
 
               <div className="submit_btn_box">
                 <button
-                  class="btn btn-warning submit_btn"
+                  className="btn btn-warning submit_btn"
                   disabled={
                     !validName ||
                     !validLastName ||

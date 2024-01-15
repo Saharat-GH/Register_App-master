@@ -3,7 +3,7 @@ import Logo from "../assets/Logo.svg";
 import { useState } from "react";
 import LoginPopup from "./LoginPopup";
 import { NavLink } from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
 export default function NavBar() {
   const [login, setLogin] = useState(false);
 
