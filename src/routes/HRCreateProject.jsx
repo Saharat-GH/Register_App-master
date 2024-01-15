@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-
-=======
 import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
->>>>>>> origin/dev-Nut
+import Axios from "axios";
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
@@ -22,22 +19,50 @@ function HRCreateProject() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // setProjectName("");
+    // setProjectDetail("");
+    // setStartingDate("");
+    // setClosingDate("");
+    // setProjectImage("");
+    // setHREmails([""]);
+    const project = {
+      projectName,
+      projectDetail,
+      startDate: startingDate,
+      endDate: closingDate,
+      salary: projectSalary,
+      position: projectPosition,
+      amount: projectAmount,
+      educationLevel: projectEducation,
+      // Add other properties as needed
+    };
+    Axios.post("http://localhost:8080/project/", project, {
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(() => {
+        console.log("New Project added");
+      })
+      .catch((error) => {
+        console.error("Error adding project:", error);
+      });
+  };
 
-    // Perform actions with form data (e.g., submit to server)
-    // ...
-
-    // Reset form fields after submission
-    setProjectName("");
-    setProjectDetail("");
-    setStartingDate("");
-    setClosingDate("");
-    setProjectImage("");
-    setHREmails([""]);
+  const handleClick = (e) => {
+    e.preventDefault();
+    const student = { name, address };
+    console.log(student);
+    fetch("http://localhost:8080/student/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(student),
+    }).then(() => {
+      console.log("New Student added");
+    });
   };
 
   return (
     <div>
-      <HrNav/>
+      <HrNav />
       <div className="vh-100">
         {" "}
         {/* Add custom class for background color */}
@@ -194,8 +219,8 @@ function HRCreateProject() {
                   type="file"
                   id="projectImage"
                   className="form-control"
-                  value={projectImage}
-                  onChange={(e) => setProjectImage(e.target.value)}
+                  onChange={(e) => setProjectImage(e.target.files[0])}
+                  required={false}
                 />
               </div>
 
