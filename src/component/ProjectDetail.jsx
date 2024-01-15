@@ -1,13 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../StyleComponent/projectdetail.css";
 
 export default function ProjectDetail(props) {
-  const {showPopup, onClose, project} = props;
+  const { showPopup, onClose, project } = props;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const project = {
+      projectName,
+      projectDetail,
+      startDate: startingDate,
+      endDate: closingDate,
+      salary: projectSalary,
+      position: projectPosition,
+      amount: projectAmount,
+      educationLevel: projectEducation,
+    };
+    axios.post("http://localhost:8080/project/", project, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(() => {
+        console.log("New Project added");
+      })
+      .catch((error) => {
+        console.error("Error adding project:", error);
+      })
+
+    const status = {
+      score: null,
+      userStatus: "Apply_Success",
+    };
+    axios.post("http://localhost:8080/status/", status, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(() => {
+        console.log("New status added");
+      })
+      .catch((error) => {
+        console.error("Error adding project status:", error);
+      });
+  };
 
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
       <div className="popup-content-detail">
-      <button className="closebtn " onClick={onClose}>
+        <button className="closebtn " onClick={onClose}>
           &times;
         </button>
         <div className="contentText">
@@ -18,26 +55,26 @@ export default function ProjectDetail(props) {
             <tbody>
               <tr>
                 <th>Position:</th>
-                <td>Software Engineer</td>
+                <td>{project.position}</td>
               </tr>
               <tr>
                 <th>Salary:</th>
-                <td>$80,000</td>
+                <td>{project.salary}</td>
               </tr>
               <tr>
                 <th>Amount:</th>
-                <td>10</td>
+                <td>{project.amount}</td>
               </tr>
               <tr>
                 <th>Education:</th>
-                <td>Bachelor's Degree</td>
+                <td>{project.educationLevel}</td>
               </tr>
               <tr>
                 <th>Application Closing Date:</th>
-                <td>dd/mm/yyyy</td>
+                <td>{project.endDate}</td>
               </tr>
             </tbody>
-          </table>  
+          </table>
         </div>
         <button
           onClick={onClose}
