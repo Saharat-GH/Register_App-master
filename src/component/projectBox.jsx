@@ -3,13 +3,13 @@ import "../../StyleComponent/index.css";
 import { useState } from "react";
 import ProjectDetail from "./Projectdetail";
 
-export default function ProjectBox() {
+export default function ProjectBox(props) {
+  const project = props.project;
   const [popup, setPopus] = useState(false);
 
   const TogglePopup=()=>{
     setPopus(!popup);
-  }
-  
+  };
 
   return (
     <div className="container d-flex justify-content-center mb-3" >
@@ -20,16 +20,14 @@ export default function ProjectBox() {
           </div>
           <div className="col-md-9" >
             <div className="card-body bg-dark "id="ProjectBox" style={{ boxShadow: '4px 4px 1px orange' }}>
-              <h5 className="card-title text-light">Lorem</h5>
+              <h5 className="card-title text-light">{project.projectName}</h5>
               <p className="card-text text-light">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer. 
+                {project.projectDetail}
               </p>
               <button onClick={TogglePopup} className="btn btn-warning text-light link-dark lh-1" style={{ position: "absolute", bottom: 10, right: 10}}>
                 Submit
               </button>
-              {popup && <ProjectDetail showPopup={popup} onClose={TogglePopup}/>}
+              {popup && <ProjectDetail showPopup={popup} onClose={TogglePopup} project={project}/>}
             </div>
           </div>
         </div>

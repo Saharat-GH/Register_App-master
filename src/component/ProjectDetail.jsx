@@ -1,7 +1,9 @@
 import React from "react";
 import "../../StyleComponent/projectdetail.css";
 
-export default function ProjectDetail({ showPopup, onClose }) {
+export default function ProjectDetail(props) {
+  const {showPopup, onClose, project} = props;
+
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
       <div className="popup-content-detail">
@@ -9,8 +11,8 @@ export default function ProjectDetail({ showPopup, onClose }) {
           &times;
         </button>
         <div className="contentText">
-          <h2>Project Name</h2>
-          <p>Project detail</p>
+          <h2>{project.projectName}</h2>
+          <p>{project.projectDetail}</p>
 
           <table className="table table-secondary table-bordered table-responsive text-light">
             <tbody>
