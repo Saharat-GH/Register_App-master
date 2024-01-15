@@ -8,6 +8,7 @@
     import Overlay from 'react-bootstrap/Overlay';
     import Tooltip from 'react-bootstrap/Tooltip';
 
+    const id = 1;
 
     const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
@@ -125,7 +126,7 @@
 
         const navigate = useNavigate();
 
-        useEffect(() => {
+        /* useEffect(() => {
             if (success) {
             const timeoutId = setTimeout(() => {
                 navigate('/mainpage');
@@ -133,7 +134,7 @@
         
             return () => clearTimeout(timeoutId);
             }
-        }, [success, navigate]);
+        }, [success, navigate]); */
 
         
 
@@ -147,20 +148,22 @@
                 return;
             }
             try {
-                /* const response = await axios.post(REGISTER_URL, 
-                    JSON.stringify({name, lastName , email, pwd , phone, education,address}),
-                    {
-                        headers: { 'Content-Type': 'application/json' },
-                        withCredentials: true
-                    }
-                ); */
-                /* console.log(response.data);
+                const response = await axios.post("http://localhost:1010/users", 
+                {firstName: name, lastName, password: pwd, email, phoneNumber: phone, educationLevel: userEducation, address },
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+                console.log(response);
+                console.log(response.data);
                 console.log(response.accessToken);
-                console.log(Json.stringify(response)); */
+                console.log(Json.stringify(response));
                 setSuccess(true);
             } catch (error) {
                 if(!error?.response) {
                     setErrMsg("No Server Response");
+                
                 } else if (error.response.status === 409) {
                     setErrMsg("This name is already taken");
                 } else {
@@ -268,12 +271,12 @@
                                     required
                                     onClick={() => setUserEducationFocus(true)}
                                     onBlur={() => setUserEducationFocus(false)}
-                                >
+                                > 
                                     <option value="" disabled defaultValue>Select Education</option>
-                                    <option value="High School">High School</option>
-                                    <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                    <option value="Master's Degree">Master's Degree</option>
-                                    <option value="PhD">PhD</option>
+                                    <option value="HIGH_SCHOOL">High School</option>
+                                    <option value="MASTERS_DEGREE">Bachelor's Degree</option>
+                                    <option value="BACHELORS_DEGREE">Master's Degree</option>
+                                    <option value="PHD">PhD</option>
                                 </select>
                                 {userEducationFocus && <Overlay target={eduRef.current} show={!validUserEducation} placement="right">
                                     {(props) => (
@@ -294,7 +297,7 @@
                                         Incorrect
                                     </span>
                                 </label>
-                                <input type="number" 
+                                <input type="text" 
                                     id="phone"
                                     ref={phoneRef}
                                     autoComplete="off"
@@ -442,7 +445,7 @@
                                     required
                                     /* aria-invalid={validCheckBox ? "false" : "true"}
                                     aria-describedby="checkboxnote" */
-                                    onChange={(e) => setValidCheckBox(e.target.value)}
+                                    onChange={(e) => setValidCheckBox(e.target.checked)}
                                 />
                                 <span id="checkboxnote" >
                                 &nbsp;accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>. 
