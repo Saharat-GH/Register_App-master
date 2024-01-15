@@ -7,7 +7,9 @@ export default function ProjectDetail(props) {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    const id = 0;
     const status = {
+      "id": id,
       "score": null,
       "userStatus": "Apply_Success",
     };
