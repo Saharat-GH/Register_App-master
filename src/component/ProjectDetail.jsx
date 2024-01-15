@@ -8,8 +8,8 @@ export default function ProjectDetail(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const status = {
-      score: null,
-      userStatus: "Apply_Success",
+      "score": null,
+      "userStatus": "Apply_Success",
     };
     axios.post("http://localhost:8080/status/", status, {
         headers: { "Content-Type": "application/json" },
@@ -21,20 +21,20 @@ export default function ProjectDetail(props) {
         console.error("Error adding project status: ", error);
       });
 
-    const userProject = {
-      user: user.id,
-      project: project.id,
-      status: status.id
-    };
-    axios.post("http://localhost:8080/userproject/", project, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then(() => {
-        console.log("New Project added");
-      })
-      .catch((error) => {
-        console.error("Error adding project: ", error);
-      })
+    // const userProject = {
+    //   user: user.id,
+    //   project: project.id,
+    //   status: status.id
+    // };
+    // axios.post("http://localhost:8080/userproject/", project, {
+    //     headers: { "Content-Type": "application/json" },
+    //   })
+    //   .then(() => {
+    //     console.log("New Project added");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error adding project: ", error);
+    //   })
     onClose();
   };
 
