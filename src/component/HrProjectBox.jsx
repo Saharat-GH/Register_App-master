@@ -23,7 +23,10 @@ const handleDelete = () => {
   });
 }
 
-export default function HrProjectBox() {
+export default function HrProjectBox(props) {
+
+  const project = props.project;
+
   return (
    <div className="container d-flex justify-content-center mt-5" >
       <div className="card mb-3" style={{ maxWidth: "800px"}}>
@@ -33,11 +36,9 @@ export default function HrProjectBox() {
           </div>
           <div className="col-md-9" >
             <div className="card-body bg-dark "id="ProjectBox" style={{ boxShadow: '4px 4px 1px orange', paddingBottom:'32px' }}>
-              <h5 className="card-title text-light">Lorem</h5>
+              <h5 className="card-title text-light">{project.projectName}</h5>
               <p className="card-text text-light">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer. 
+                { project.projectDetail }
               </p>
               <div className="buttonContainer">
             <button className='btn btn-warning text-dark link-light'>Edit</button>
