@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../component/navBar";
-import Footer from "../component/footer";
 
 function HRCreateProject() {
   // State for form fields
