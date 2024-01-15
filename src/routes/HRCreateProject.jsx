@@ -19,7 +19,9 @@ function HRCreateProject() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const id = 0;
     const project = {
+      id: id,
       projectName,
       projectDetail,
       startDate: startingDate,
