@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
-import Axios from "axios";
+import axios from "axios";
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
@@ -19,12 +19,6 @@ function HRCreateProject() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setProjectName("");
-    // setProjectDetail("");
-    // setStartingDate("");
-    // setClosingDate("");
-    // setProjectImage("");
-    // setHREmails([""]);
     const project = {
       projectName,
       projectDetail,
@@ -34,9 +28,8 @@ function HRCreateProject() {
       position: projectPosition,
       amount: projectAmount,
       educationLevel: projectEducation,
-      // Add other properties as needed
     };
-    Axios.post("http://localhost:8080/project/", project, {
+    axios.post("http://localhost:8080/project/", project, {
       headers: { "Content-Type": "application/json" },
     })
       .then(() => {
@@ -203,15 +196,15 @@ function HRCreateProject() {
                   onChange={(e) => setProjectEducation(e.target.value)}
                 >
                   <option value="">Select Education</option>
-                  <option value="High School">High School</option>
-                  <option value="Bachelor's Degree">Bachelor's Degree</option>
-                  <option value="Master's Degree">Master's Degree</option>
-                  <option value="PhD">PhD</option>
+                  <option value="HIGH_SCHOOL">High School</option>
+                  <option value="BACHELORS_DEGREE">Bachelor's Degree</option>
+                  <option value="MASTERS_DEGREE">Master's Degree</option>
+                  <option value="PHD">PhD</option>
                 </select>
               </div>
 
               {/* Project Image */}
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label htmlFor="projectImage" className="form-label">
                   Project Image URL:
                 </label>
@@ -222,7 +215,7 @@ function HRCreateProject() {
                   onChange={(e) => setProjectImage(e.target.files[0])}
                   required={false}
                 />
-              </div>
+              </div> */}
 
               {/* Submit Button */}
               <button
