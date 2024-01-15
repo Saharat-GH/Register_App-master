@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import "../StyleComponent/index.css";
 import HRCreateProject from "./routes/HRCreateProject";
-import ErrorPage from "./routes/ErrorPage";
+import ErrorPage from "./routes/errorPage";
 import { Route } from "react-router-dom";
 import RootLayout from "./component/RootLayout";
 import UserMainPage from "./routes/UserMainPage";
