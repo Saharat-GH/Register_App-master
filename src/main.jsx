@@ -16,6 +16,8 @@ import ForgetPassword from "./component/ForgetPassword";
 import RegisterForm from "./routes/RegisterForm";
 import RegisterPage from "./component/RegisterPage";
 import HrPage from "./routes/HrPage";
+import { AuthProvider } from './context/AuthProvider';
+import Login from './component/Login';
 
 const router = createBrowserRouter([
   {
