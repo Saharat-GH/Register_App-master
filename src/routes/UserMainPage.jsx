@@ -1,12 +1,16 @@
 import React from 'react'
-import SignUp from './signup'
+import ProjectBox from '../component/ProjectBox'
+import NavBar from '../component/์NavBar'
 
 
 export default function UserMainPage() {
   
   return (
     <div>
-      <SignUp/>
+      <ProjectBox/>
+      <ProjectBox/>
+      <ProjectBox/>
+      <ProjectBox/>
     </div>
   )
 }

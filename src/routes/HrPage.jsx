@@ -1,13 +1,14 @@
 import React from 'react'
 import HrNav from '../component/HrNav'
-import ProjectBox from '../component/projectBox'
-
+import HrProjectBox from '../component/HrProjectBox'
 export default function HrPage() {
 
   return (
     <div>
         <HrNav/>
-        <ProjectBox/>
+        <HrProjectBox/>
+        <HrProjectBox/>
+        <HrProjectBox/>
     </div>
   )
 }

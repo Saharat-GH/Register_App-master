@@ -13,10 +13,15 @@ export default function NavBar() {
   const closeLogin = () => {
     setLogin(false);
   };
+
+  const directToSignUp=()=>{
+    navigate('/register');
+  }
   return (
     <div>
       <header
-        className="d-flex align-items-center justify-content-between py-1 mb-5 border- bg-dark"
+        className="d-flex align-items-center justify-content-between py-1 border-"
+        style={{backgroundColor: '#333'}}
         id="Nav"
       >
         <div className="col-md-3">
@@ -40,11 +45,22 @@ export default function NavBar() {
             </li>
           </ul>
 
+          <ul className="nav justify-content-center mb-md-0 me-3">
+            <li>
+              <NavLink
+                to="/hr"
+                className="nav-link px-2 text-warning link-secondary"
+              >
+                HR
+              </NavLink>
+            </li>
+          </ul>
+
           <div className="text-end">
             <button
               type="button"
               onClick={openLogin}
-              className="btn btn-outline-warning me-2"
+              className="btn btn-outline-warning me-2 lh-1"
             >
               Login
             </button>
@@ -58,7 +74,8 @@ export default function NavBar() {
             <NavLink to="/register">
               <button
                 type="button"
-                className="btn btn-warning text-light link-dark"
+                className="btn btn-warning text-light link-dark lh-1"
+                onClick={directToSignUp}
                 style={{marginRight: '15px'}}
               >
                 Sign-up

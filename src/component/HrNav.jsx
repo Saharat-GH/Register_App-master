@@ -11,7 +11,7 @@ export default function HrNav() {
       >
         <div className="col-md-3">
           <NavLink
-            to="/"
+            to="/hr"
             className="d-inline-flex link-body-emphasis text-decoration-none"
           >
             <img src={Logo} alt="Your Logo" width="120" height="75" />
@@ -29,15 +29,27 @@ export default function HrNav() {
               </NavLink>
             </li>
           </ul>
+
+          <ul className="nav justify-content-center mb-md-0 me-3">
+            <li>
+              <NavLink
+                to="/"
+                className="nav-link px-2 text-warning link-secondary"
+              >
+                User
+              </NavLink>
+            </li>
+          </ul>
+
           </div>
           <div className="d-flex align-items-center">
           <ul className="nav justify-content-center mb-md-0 me-3">
             <li>
               <NavLink
-                to="/createproject"
+                to="/profile"
                 className="nav-link px-2 text-warning link-secondary"
               >
-                Account
+                Profile
               </NavLink>
             </li>
           </ul>

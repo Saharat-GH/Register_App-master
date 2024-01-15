@@ -5,14 +5,13 @@ import {
   RouterProvider,
   createRoutesFromElements,
 } from "react-router-dom";
-import SignUp from "./routes/signup";
 import "../StyleComponent/index.css";
 import HRCreateProject from "./routes/HRCreateProject";
-import ErrorPage from "./routes/errorPage";
+import ErrorPage from "./routes/ErrorPage";
 import { Route } from "react-router-dom";
-import RootLeyout from "./component/RootLeyout";
+import RootLayout from "./component/RootLayout";
 import UserMainPage from "./routes/UserMainPage";
-import ForgetPassword from "./component/ForgetPassword";
+import ForgetPassword from "./routes/ForgetPassword";
 import RegisterForm from "./routes/RegisterForm";
 import RegisterPage from "./component/RegisterPage";
 import HrPage from "./routes/HrPage";
@@ -21,36 +20,41 @@ import Login from './component/Login';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <RootLeyout />,
-    errorElement: <ErrorPage/>,
-    children: [
-      {
-        path: '/',
-        element: <SignUp/>
-      },
-      {
-        path: 'register',
-        element: <RegisterForm />
-      },
-      {
-        path: 'forgot',
-        element: <ForgetPassword />
-      },
-    ],
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: 'hr',
+    path: "/",
+    element: <UserMainPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterForm />,
+  },
+  {
+    path: "/forgot",
+    element: <ForgetPassword />,
+  },
+  {
+    path: "/term-of-service",
+    element: <TermOfService />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/hr",
     element: <HrPage />,
-    children: [
-      {
-        path: 'createproject',
-        element: <HRCreateProject />
-      },
-    ],
+  },
+  {
+    path: "/profile",
+    element: <HRCreateProject />,
   },
 ]);
-  /* createRoutesFromElements(
+/* createRoutesFromElements(
     <Route path="/" element={<RootLeyout />}>
       <Route index element={<SignUp />} />
       <Route path="user" element={<SignUp />}/>
@@ -63,7 +67,6 @@ const router = createBrowserRouter([
       <Route path="register" element={<RegisterPage />} />
     </Route>
   ) */
- 
 
 // [
 //   {

@@ -28,6 +28,7 @@
     position: relative;
     z-index: 1001;
     width: 400px;
+    max-height: 500px;
   }
   
   .closebtn {
@@ -52,10 +53,12 @@
 .small:hover{
     color: #ffc107 !important;
 }
-.signupbtn{
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    margin-top:25px;
+.signupbtn {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  position: absolute; /* Set the position to absolute */
+  bottom: 10px; /* Adjust the distance from the bottom */
+  left: 0;
+  right: 0;
 }
-  
