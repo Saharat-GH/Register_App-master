@@ -1,31 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../StyleComponent/projectdetail.css";
+import axios from "axios";
 
 export default function ProjectDetail(props) {
   const { showPopup, onClose, project } = props;
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const project = {
-      projectName,
-      projectDetail,
-      startDate: startingDate,
-      endDate: closingDate,
-      salary: projectSalary,
-      position: projectPosition,
-      amount: projectAmount,
-      educationLevel: projectEducation,
-    };
-    axios.post("http://localhost:8080/project/", project, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then(() => {
-        console.log("New Project added");
-      })
-      .catch((error) => {
-        console.error("Error adding project:", error);
-      })
-
     const status = {
       score: null,
       userStatus: "Apply_Success",
@@ -39,6 +20,22 @@ export default function ProjectDetail(props) {
       .catch((error) => {
         console.error("Error adding project status:", error);
       });
+
+    const userProject = {
+      user: user.id,
+      project: project.id,
+      status: status.id
+    };
+    axios.post("http://localhost:8080/userproject/", project, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(() => {
+        console.log("New Project added");
+      })
+      .catch((error) => {
+        console.error("Error adding project:", error);
+      })
+    onClose();
   };
 
   return (
@@ -77,7 +74,7 @@ export default function ProjectDetail(props) {
           </table>
         </div>
         <button
-          onClick={onClose}
+          onClick={handleSubmit}
           className="btn btn-warning text-light d-flex justify-content-center link-dark"
           id="submitbtn"
         >
