@@ -1,19 +1,21 @@
-import { useNavigate, Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import Footer from "../component/footer";
-import axios from "../api/axios";
-import "../../StyleComponent/RegisterForm.css";
-import "bootstrap/dist/css/bootstrap.css";
-import Overlay from "react-bootstrap/Overlay";
-import Tooltip from "react-bootstrap/Tooltip";
-import NavBar from "../component/์NavBar";
-const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
-const REGISTER_URL = "/register";
-const PHONE_REGEX = /^0[689]\d{8}$/;
-const EMAIL_REGEX =
-  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
+    import { useNavigate } from 'react-router-dom';
+    import { useState,useEffect,useRef } from "react";
+    import NavBar from "../component/navBar";
+    import Footer from "../component/footer";
+    import axios from "../api/axios";
+    import "../../StyleComponent/RegisterForm.css"
+    import 'bootstrap/dist/css/bootstrap.css';
+    import Overlay from 'react-bootstrap/Overlay';
+    import Tooltip from 'react-bootstrap/Tooltip';
+
+    const id = 1;
+
+    const USER_REGEX = /^[a-zA-Z][a-zA-Z]{3,23}$/;
+    const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+    const REGISTER_URL = '/register';
+    const PHONE_REGEX = /^0[689]\d{8}$/;
+    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const ADDRESS_REGEX = /^[A-Za-z0-9'\.\-\s\,]{10,255}$/;
 
 function RegisterForm() {
   const nameRef = useRef();
@@ -124,48 +126,52 @@ function RegisterForm() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (success) {
-      const timeoutId = setTimeout(() => {
-        navigate("/");
-      }, 4000);
+        /* useEffect(() => {
+            if (success) {
+            const timeoutId = setTimeout(() => {
+                navigate('/mainpage');
+            }, 4000);
+        
+            return () => clearTimeout(timeoutId);
+            }
+        }, [success, navigate]); */
 
-      return () => clearTimeout(timeoutId);
-    }
-  }, [success, navigate]);
+        
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const v1 = USER_REGEX.test(name);
-    const v2 = PWD_REGEX.test(pwd);
-    const v3 = EMAIL_REGEX.test(email);
-    if (!v1 || !v2 || !v3 || !validCheckBox) {
-      setErrMsg("Invalid Entry or Checkbox not checked");
-      return;
-    }
-    try {
-      /* const response = await axios.post(REGISTER_URL, 
-                JSON.stringify({name, lastName , email, pwd , phone, education,address}),
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const v1 = USER_REGEX.test(name);
+            const v2 = PWD_REGEX.test(pwd);
+            const v3 = EMAIL_REGEX.test(email);
+            if (!v1 || !v2 || !v3 || !validCheckBox) {
+                setErrMsg("Invalid Entry or Checkbox not checked");
+                return;
+            }
+            try {
+                const response = await axios.post("http://localhost:1010/users", 
+                {firstName: name, lastName, password: pwd, email, phoneNumber: phone, educationLevel: userEducation, address },
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 }
-            ); */
-      /* console.log(response.data);
-            console.log(response.accessToken);
-            console.log(Json.stringify(response)); */
-      setSuccess(true);
-    } catch (error) {
-      if (!error?.response) {
-        setErrMsg("No Server Response");
-      } else if (error.response.status === 409) {
-        setErrMsg("This name is already taken");
-      } else {
-        setErrMsg("Registrations failed");
-      }
-      errRef.current.focus();
-    }
-  }
+            );
+                console.log(response);
+                console.log(response.data);
+                console.log(response.accessToken);
+                console.log(Json.stringify(response));
+                setSuccess(true);
+            } catch (error) {
+                if(!error?.response) {
+                    setErrMsg("No Server Response");
+                
+                } else if (error.response.status === 409) {
+                    setErrMsg("This name is already taken");
+                } else {
+                    setErrMsg("Registrations failed");
+                }
+                errRef.current.focus();
+            }
+        }
 
   return (
     <div>
@@ -253,107 +259,86 @@ function RegisterForm() {
                     </span>
                   </label>
 
-                  <input
-                    type="text"
-                    id="lastNameInput"
-                    ref={lastNameRef}
-                    autoComplete="off"
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                    /* aria-invalid = {validLastName ? "false" : "true"}
-                                    aria-describedby="lastNameNote" */
-                    onFocus={() => setLastNameFocus(true)}
-                    onBlur={() => setLastNameFocus(false)}
-                  />
-                  {lastNameFocus && (
-                    <Overlay
-                      target={lastNameRef.current}
-                      show={!validLastName}
-                      placement="right"
-                    >
-                      {(props) => (
-                        <Tooltip id="overlay-example" {...props}>
-                          4 to 24 characters.
-                          <br />
-                        </Tooltip>
-                      )}
-                    </Overlay>
-                  )}
-                </div>
-              </div>
-
-              <div className="userEducation_box">
-                <label htmlFor="userEducation" className="form-label">
-                  Project Education
-                </label>
-                <select
-                  id="userEducation"
-                  ref={eduRef}
-                  className="form-control"
-                  value={userEducation || ""} //set the value to '' when first start will has and empty value string
-                  onChange={(e) => setUserEducation(e.target.value)}
-                  required
-                  onClick={() => setUserEducationFocus(true)}
-                  onBlur={() => setUserEducationFocus(false)}
-                >
-                  <option value="" disabled defaultValue>
-                    Select Education
-                  </option>
-                  <option value="High School">High School</option>
-                  <option value="Bachelor's Degree">Bachelor's Degree</option>
-                  <option value="Master's Degree">Master's Degree</option>
-                  <option value="PhD">PhD</option>
-                </select>
-                {userEducationFocus && (
-                  <Overlay
-                    target={eduRef.current}
-                    show={!validUserEducation}
-                    placement="right"
-                  >
-                    {(props) => (
-                      <Tooltip id="overlay-example" {...props}>
-                        Please select your education
-                      </Tooltip>
-                    )}
-                  </Overlay>
-                )}
-              </div>
-
-              <div className="phone_box">
-                <label htmlFor="phone">
-                  Phone numeber :
-                  <span className={validPhone ? "valid" : "hide"}>Correct</span>
-                  <span className={validPhone || !phone ? "hide" : "invalid"}>
-                    Incorrect
-                  </span>
-                </label>
-                <input
-                  type="number"
-                  id="phone"
-                  ref={phoneRef}
-                  autoComplete="off"
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  maxLength={10}
-                  /* aria-invalid = {validPhone ? "false" : "true"}
-                                aria-describedby="overlay-phone" */
-                  onFocus={() => setPhoneFocus(true)}
-                  onBlur={() => setPhoneFocus(false)}
-                />
-                {phoneFocus && (
-                  <Overlay
-                    target={phoneRef.current}
-                    show={!validPhone}
-                    placement="right"
-                  >
-                    {(props) => (
-                      <Tooltip id="overlay-phone" {...props}>
-                        Start with 0 , Only number and not more than 10 digits.
-                      </Tooltip>
-                    )}
-                  </Overlay>
-                )}
-              </div>
+                                    <input type="text" 
+                                        id="lastNameInput"
+                                        ref={lastNameRef}
+                                        autoComplete="off"
+                                        onChange={(e) =>setLastName(e.target.value)}
+                                        required
+                                        /* aria-invalid = {validLastName ? "false" : "true"}
+                                        aria-describedby="lastNameNote" */
+                                        onFocus={() => setLastNameFocus(true)}
+                                        onBlur={() => setLastNameFocus(false)}
+                                    />
+                                    {lastNameFocus &&<Overlay target={lastNameRef.current} show={!validLastName} placement="right">
+                                        {(props) => (
+                                        <Tooltip id="overlay-example" {...props}>
+                                            4 to 24 characters.<br/>
+                                        </Tooltip>
+                                        )}
+                                    </Overlay>} 
+                                </div>
+                            </div>
+                            
+                            <div className='userEducation_box'>
+                                <label htmlFor="userEducation" className="form-label">
+                                    Project Education 
+                                </label>
+                                <select
+                                    id="userEducation"
+                                    ref={eduRef}
+                                    className="form-control"
+                                    value={userEducation || ''} //set the value to '' when first start will has and empty value string
+                                    onChange={(e) => setUserEducation(e.target.value)}
+                                    required
+                                    onClick={() => setUserEducationFocus(true)}
+                                    onBlur={() => setUserEducationFocus(false)}
+                                > 
+                                    <option value="" disabled defaultValue>Select Education</option>
+                                    <option value="HIGH_SCHOOL">High School</option>
+                                    <option value="MASTERS_DEGREE">Bachelor's Degree</option>
+                                    <option value="BACHELORS_DEGREE">Master's Degree</option>
+                                    <option value="PHD">PhD</option>
+                                </select>
+                                {userEducationFocus && <Overlay target={eduRef.current} show={!validUserEducation} placement="right">
+                                    {(props) => (
+                                    <Tooltip id="overlay-example" {...props}>
+                                        Please select your education
+                                    </Tooltip>
+                                    )}
+                                </Overlay>} 
+                            </div>
+                            
+                            <div className='phone_box'>
+                                <label htmlFor="phone">
+                                    Phone numeber :
+                                    <span className={validPhone ? "valid" : "hide"}>
+                                        Correct
+                                    </span>
+                                    <span className={validPhone || !phone ? "hide" : "invalid"}>
+                                        Incorrect
+                                    </span>
+                                </label>
+                                <input type="text" 
+                                    id="phone"
+                                    ref={phoneRef}
+                                    autoComplete="off"
+                                    onChange={(e) =>setPhone(e.target.value)}
+                                    required
+                                    maxLength={10}
+                                    /* aria-invalid = {validPhone ? "false" : "true"}
+                                    aria-describedby="overlay-phone" */
+                                    onFocus={() => setPhoneFocus(true)}
+                                    onBlur={() => setPhoneFocus(false)}
+                                />
+                                {phoneFocus && <Overlay target={phoneRef.current} show={!validPhone} placement="right">
+                                    {(props) => (
+                                    <Tooltip id="overlay-phone" {...props}>
+                                        Start with 0 , Only number and not more than 10 digits.
+                                    </Tooltip>
+                                    )}
+                                </Overlay>}
+                            </div>
 
               <div className="address_box">
                 <label htmlFor="address">
@@ -504,54 +489,29 @@ function RegisterForm() {
                 )}
               </div>
 
-              <div className="policy">
-                <input
-                  type="checkbox"
-                  id="checkbox"
-                  required
-                  /* aria-invalid={validCheckBox ? "false" : "true"}
-                                aria-describedby="checkboxnote" */
-                  onChange={(e) => setValidCheckBox(e.target.value)}
-                />
-
-                <span id="checkboxnote">
-                  &nbsp;accept the
-                  <Link to="/term-of-service" target="_blank">
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link to="/privacy-policy" target="_blank">
-                    Privacy Policy
-                  </Link>
-                  .
-                </span>
-              </div>
-
-              <div className="submit_btn_box">
-                <button
-                  className="btn btn-warning submit_btn"
-                  disabled={
-                    !validName ||
-                    !validLastName ||
-                    !validUserEducation ||
-                    !validAddress ||
-                    !validPhone ||
-                    !validPwd ||
-                    !validMatch ||
-                    !validCheckBox
-                      ? true
-                      : false
-                  }
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
-          </section>
-        </div>
-      )}
-    </div>
-  );
-}
+                            <div className='policy'>
+                                <input type="checkbox" 
+                                    id="checkbox" 
+                                    required
+                                    /* aria-invalid={validCheckBox ? "false" : "true"}
+                                    aria-describedby="checkboxnote" */
+                                    onChange={(e) => setValidCheckBox(e.target.checked)}
+                                />
+                                <span id="checkboxnote" >
+                                &nbsp;accept the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>. 
+                                </span>
+                            </div>
+                            
+                            <div className='submit_btn_box' >
+                                <button  class="btn btn-warning submit_btn" disabled={!validName || !validLastName || !validUserEducation || !validAddress || !validPhone || !validPwd || !validMatch || !validCheckBox ? true : false}>Sign Up</button>
+                            </div>
+                            
+                        </form>
+                    </section>    
+                <Footer />
+                </div>)}
+            </div>
+        )
+    }
 
 export default RegisterForm;
