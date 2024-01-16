@@ -20,7 +20,7 @@ export default function ProjectDetail(props) {
     setProjectId((project.id));
   }, [project.id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const id = 0;
     const status = {
@@ -28,32 +28,27 @@ export default function ProjectDetail(props) {
       "score": null,
       "userStatus": "Apply_Success",
     };
-    axios.post("http://localhost:8080/status/", status, {
-      headers: { "Content-Type": "application/json" },
-    })
-    .then(() => {
-      console.log("New status added");
-    })
-    .catch((error) => {
-      console.error("Error adding project status: ", error);
-    });
-
-    const userID = 1;
-    const userProject = {
-      id: id,
-      user: {id: userID},
-      project: {id: projectId},
-      status: {id: lastStatusId}
-    };
-    axios.post("http://localhost:8080/userproject/", userProject, {
+    try {
+      await axios.post("http://localhost:8080/status/", status, {
         headers: { "Content-Type": "application/json" },
       })
-      .then(() => {
-        console.log("New userProject added");
+      console.log("New status added");
+
+      const userID = 1;
+      const userProject = {
+        id: id,
+        user: {id: userID},
+        project: {id: projectId},
+        status: {id: lastStatusId + 1}
+      };s
+      await axios.post("http://localhost:8080/userproject/", userProject, {
+        headers: { "Content-Type": "application/json" },
       })
-      .catch((error) => {
-        console.error("Error adding userProject: ", error);
-      })
+      console.log("New userProject added");
+      
+    } catch (error) {
+      console.error("Error: ", error);
+    }
     onClose();
   };
 
