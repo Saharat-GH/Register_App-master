@@ -4,7 +4,22 @@ import axios from "axios";
 
 export default function ProjectDetail(props) {
   const { showPopup, onClose, project } = props;
+  const [statuses, setStatuses] = useState([]);
+  const [lastStatusId, setLastStatusId] = useState(null);
+  const [projectId, setProjectId] = useState(null);
+
   
+  useEffect(() => {
+    axios.get('http://localhost:8080/status/')
+    .then((response) => {
+      setStatuses(response.data);
+      const lastStatus = response.data[response.data.length - 1];
+      setLastStatusId(lastStatus.id);
+    })
+      .catch((error) => console.error('Error fetching statuses: ', error));
+    setProjectId((project.id));
+  }, [project.id]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = 0;
@@ -14,29 +29,31 @@ export default function ProjectDetail(props) {
       "userStatus": "Apply_Success",
     };
     axios.post("http://localhost:8080/status/", status, {
+      headers: { "Content-Type": "application/json" },
+    })
+    .then(() => {
+      console.log("New status added");
+    })
+    .catch((error) => {
+      console.error("Error adding project status: ", error);
+    });
+
+    const userID = 1;
+    const userProject = {
+      id: id,
+      user: {id: userID},
+      project: {id: projectId},
+      status: {id: lastStatusId}
+    };
+    axios.post("http://localhost:8080/userproject/", userProject, {
         headers: { "Content-Type": "application/json" },
       })
       .then(() => {
-        console.log("New status added");
+        console.log("New userProject added");
       })
       .catch((error) => {
-        console.error("Error adding project status: ", error);
-      });
-
-    // const userProject = {
-    //   user: user.id,
-    //   project: project.id,
-    //   status: status.id
-    // };
-    // axios.post("http://localhost:8080/userproject/", project, {
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    //   .then(() => {
-    //     console.log("New Project added");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding project: ", error);
-    //   })
+        console.error("Error adding userProject: ", error);
+      })
     onClose();
   };
 
