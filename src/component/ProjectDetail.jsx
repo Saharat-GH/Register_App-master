@@ -1,6 +1,5 @@
-import React, { useEffect, useState }, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../StyleComponent/projectdetail.css";
-import axios from "../api/axios";
 import axios from "axios";
 
 export default function ProjectDetail(props) {
@@ -11,7 +10,7 @@ export default function ProjectDetail(props) {
 
   
   useEffect(() => {
-    axios.get('http://localhost:8080/status/')
+    axios.get('http://localhost:9000/status/')
     .then((response) => {
       setStatuses(response.data);
       const lastStatus = response.data[response.data.length - 1];
@@ -30,7 +29,7 @@ export default function ProjectDetail(props) {
       "userStatus": "Apply_Success",
     };
     try {
-      await axios.post("http://localhost:8080/status/", status, {
+      await axios.post("http://localhost:9000/status/", status, {
         headers: { "Content-Type": "application/json" },
       })
       console.log("New status added");
@@ -41,7 +40,7 @@ export default function ProjectDetail(props) {
         user: {id: userID},
         project: {id: projectId},
         status: {id: lastStatusId + 1}
-      };s
+      };
       await axios.post("http://localhost:8080/userproject/", userProject, {
         headers: { "Content-Type": "application/json" },
       })
@@ -88,7 +87,6 @@ export default function ProjectDetail(props) {
             </tbody>
           </table>
         </div>
-          ))}
         <button
           onClick={handleSubmit}
           className="btn btn-warning text-light d-flex justify-content-center link-dark"

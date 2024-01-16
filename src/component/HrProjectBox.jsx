@@ -24,26 +24,13 @@ const handleDelete = () => {
   });
 };
 
-export default function HrProjectBox() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = () => {
-      axios.get("http://localhost:9000/project")
-        .then((res) => {
-          console.log(res); // Log the entire response to the console
-          setData(res.data);
-        });
-    };
-    
-
-    fetchData();
-  }, []);
+export default function HrProjectBox(props) {
+ 
+  const project = props.project;
 
   return (
     <div className="container d-flex justify-content-center mt-5 flex-column">
-      {data.map((item) => (
-        <div key={item.id} className="card mb-3" style={{ maxWidth: "800px"}}>
+        <div  className="card mb-3" style={{ maxWidth: "800px"}}>
           <div className="row g-0 ">
             <div className="col-md-3" style={{ boxShadow: "5px 4px 1px orange" }}>
               <img
@@ -56,11 +43,11 @@ export default function HrProjectBox() {
               <div
                 className="card-body bg-dark "
                 id="ProjectBox"
-                style={{ boxShadow: "4px 4px 1px orange", paddingBottom: "32px" }}
+                style={{ boxShadow: "4px 4px 1px orange", paddingBottom: "32px" , height: '100%' }}
               >
-                <h5 className="card-title text-light">{item.projectName}</h5>
+                <h5 className="card-title text-light">{project.projectName}</h5>
                 <p className="card-text text-light">
-                  {item.projectDetail}
+                  {project.projectDetail}
                 </p>
                 <div className="buttonContainer">
                   <button className="btn btn-warning text-dark link-light">
@@ -77,7 +64,6 @@ export default function HrProjectBox() {
             </div>
           </div>
         </div>
-      ))}
     </div>
   );
       }  

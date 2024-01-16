@@ -6,7 +6,7 @@ export default function HrPage() {
   const [hrProjects, setHrProjects] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/project/')
+    axios.get('http://localhost:9000/project/')
       .then((response) => setHrProjects(response.data))
       .catch((error) => console.error('Error fetching HR projects:', error));
   }, []);
