@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <UserMainPage />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/register",
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   {
     path: "/forgot",
     element: <ForgetPassword />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "/term-of-service",

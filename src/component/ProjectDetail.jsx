@@ -40,7 +40,7 @@ export default function ProjectDetail(props) {
         user: {id: userID},
         project: {id: projectId},
         status: {id: lastStatusId + 1}
-      };s
+      };
       await axios.post("http://localhost:8080/userproject/", userProject, {
         headers: { "Content-Type": "application/json" },
       })

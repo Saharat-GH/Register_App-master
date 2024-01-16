@@ -1,5 +1,5 @@
 import React , { useState, useEffect } from 'react'
-import ProjectBox from '../component/ProjectBox'
+import ProjectBox from '../component/projectBox'
 import NavBar from '../component/์NavBar';
 import axios from 'axios';
 
