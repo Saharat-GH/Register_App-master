@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
 import axios from "axios";
+import TextAreaForm from "../component/TextAreaForm";
+
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
@@ -41,6 +43,8 @@ function HRCreateProject() {
         console.error("Error adding project:", error);
       });
   };
+
+  
 
   return (
     <div>
@@ -84,6 +88,8 @@ function HRCreateProject() {
                   required
                 ></textarea>
               </div>
+
+              <TextAreaForm />
 
               {/* Application Starting Date */}
               <div className="mb-3">
