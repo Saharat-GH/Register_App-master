@@ -80,6 +80,7 @@ function HRCreateProject() {
                   style={{ height: "150px" }}
                   onChange={(e) => setProjectDetail(e.target.value)}
                   placeholder="Enter project detail"
+                  maxLength={600}
                   required
                 ></textarea>
               </div>
