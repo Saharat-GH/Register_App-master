@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from './์NavBar'
+import NavBar from './NavBar'
 import { Outlet } from 'react-router-dom'
 import ChildrenLayout from './ChildrenLayout'
 import UserMainPage from '../routes/UserMainPage'

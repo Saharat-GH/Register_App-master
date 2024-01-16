@@ -15,7 +15,7 @@ export default function NavBar() {
   };
 
   const directToSignUp=()=>{
-    navigate('/register');
+    Navigate('/register');
   }
   return (
     <div>

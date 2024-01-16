@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../StyleComponent/projectdetail.css";
+import axios from "../api/axios";
 
 export default function ProjectDetail({ showPopup, onClose }) {
+
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const res = await axios.get("http://localhost:9000/project");
+      setData(res.data);
+    }
+    fetchData();
+  }, [])
+
+  const sortedData = [...data].sort((a,b)=> a.id - b.id);
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
       <div className="popup-content-detail">
       <button className="closebtn " onClick={onClose}>
           &times;
         </button>
-        <div className="contentText">
-          <h2>Project Name</h2>
-          <p>Project detail</p>
+        {sortedData.map((item)=>(
+
+          <div key={item.id} className="contentText">
+          <h2>{item.projectName}</h2>
+          <p className="small">{item.ProjectDetail}</p>
 
           <table className="table table-secondary table-bordered table-responsive text-light">
             <tbody>
@@ -37,10 +52,11 @@ export default function ProjectDetail({ showPopup, onClose }) {
             </tbody>
           </table>  
         </div>
+          ))}
         <button
-          onClick={onClose}
-          className="btn btn-warning text-light d-flex justify-content-center link-dark"
-          id="submitbtn"
+        onClick={onClose}
+        className="btn btn-warning text-light d-flex justify-content-center link-dark"
+        id="submitbtn"
         >
           Submit
         </button>

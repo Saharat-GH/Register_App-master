@@ -1,6 +1,6 @@
 // DefaultLayout.js
 import React from 'react';
-import NavBar from './์NavBar';
+import NavBar from './NavBar';
 
 const ChildrenLayout = ({ children }) => (
   <div>

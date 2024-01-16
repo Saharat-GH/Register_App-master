@@ -1,6 +1,6 @@
     import { useNavigate } from 'react-router-dom';
     import { useState,useEffect,useRef } from "react";
-    import NavBar from "../component/navBar";
+    import NavBar from '../component/NavBar';
     import Footer from "../component/footer";
     import axios from "../api/axios";
     import "../../StyleComponent/RegisterForm.css"
