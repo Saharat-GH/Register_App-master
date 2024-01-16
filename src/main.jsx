@@ -24,36 +24,43 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "/",
     element: <UserMainPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "/register",
     element: <RegisterForm />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/forgot",
     element: <ForgetPassword />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/term-of-service",
     element: <TermOfService />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/privacy-policy",
     element: <PrivacyPolicy />,
+    errorElement: <ErrorPage />,
   },
 
   {
     path: "/hr",
     element: <HrPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/profile",
     element: <HRCreateProject />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/Login",

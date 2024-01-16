@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
+import axios from "axios";
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
@@ -18,22 +19,32 @@ function HRCreateProject() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Perform actions with form data (e.g., submit to server)
-    // ...
-
-    // Reset form fields after submission
-    setProjectName("");
-    setProjectDetail("");
-    setStartingDate("");
-    setClosingDate("");
-    setProjectImage("");
-    setHREmails([""]);
+    const id = 0;
+    const project = {
+      id: id,
+      projectName,
+      projectDetail,
+      startDate: startingDate,
+      endDate: closingDate,
+      salary: projectSalary,
+      position: projectPosition,
+      amount: projectAmount,
+      educationLevel: projectEducation,
+    };
+    axios.post("http://localhost:8080/project/", project, {
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(() => {
+        console.log("New Project added");
+      })
+      .catch((error) => {
+        console.error("Error adding project:", error);
+      });
   };
 
   return (
     <div>
-      <HrNav/>
+      <HrNav />
       <div className="vh-100">
         {" "}
         {/* Add custom class for background color */}
@@ -174,15 +185,15 @@ function HRCreateProject() {
                   onChange={(e) => setProjectEducation(e.target.value)}
                 >
                   <option value="">Select Education</option>
-                  <option value="High School">High School</option>
-                  <option value="Bachelor's Degree">Bachelor's Degree</option>
-                  <option value="Master's Degree">Master's Degree</option>
-                  <option value="PhD">PhD</option>
+                  <option value="HIGH_SCHOOL">High School</option>
+                  <option value="BACHELORS_DEGREE">Bachelor's Degree</option>
+                  <option value="MASTERS_DEGREE">Master's Degree</option>
+                  <option value="PHD">PhD</option>
                 </select>
               </div>
 
               {/* Project Image */}
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label htmlFor="projectImage" className="form-label">
                   Project Image URL:
                 </label>
@@ -190,10 +201,10 @@ function HRCreateProject() {
                   type="file"
                   id="projectImage"
                   className="form-control"
-                  value={projectImage}
-                  onChange={(e) => setProjectImage(e.target.value)}
+                  onChange={(e) => setProjectImage(e.target.files[0])}
+                  required={false}
                 />
-              </div>
+              </div> */}
 
               {/* Submit Button */}
               <button

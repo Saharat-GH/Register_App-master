@@ -1,62 +1,98 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState }, { useState, useEffect } from "react";
 import "../../StyleComponent/projectdetail.css";
 import axios from "../api/axios";
+import axios from "axios";
 
-export default function ProjectDetail({ showPopup, onClose }) {
+export default function ProjectDetail(props) {
+  const { showPopup, onClose, project } = props;
+  const [statuses, setStatuses] = useState([]);
+  const [lastStatusId, setLastStatusId] = useState(null);
+  const [projectId, setProjectId] = useState(null);
 
-  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:8080/status/')
+    .then((response) => {
+      setStatuses(response.data);
+      const lastStatus = response.data[response.data.length - 1];
+      setLastStatusId(lastStatus.id);
+    })
+      .catch((error) => console.error('Error fetching statuses: ', error));
+    setProjectId((project.id));
+  }, [project.id]);
 
-  useEffect(()=>{
-    const fetchData = async()=>{
-      const res = await axios.get("http://localhost:9000/project");
-      setData(res.data);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const id = 0;
+    const status = {
+      "id": id,
+      "score": null,
+      "userStatus": "Apply_Success",
+    };
+    try {
+      await axios.post("http://localhost:8080/status/", status, {
+        headers: { "Content-Type": "application/json" },
+      })
+      console.log("New status added");
+
+      const userID = 1;
+      const userProject = {
+        id: id,
+        user: {id: userID},
+        project: {id: projectId},
+        status: {id: lastStatusId + 1}
+      };s
+      await axios.post("http://localhost:8080/userproject/", userProject, {
+        headers: { "Content-Type": "application/json" },
+      })
+      console.log("New userProject added");
+      
+    } catch (error) {
+      console.error("Error: ", error);
     }
-    fetchData();
-  }, [])
+    onClose();
+  };
 
-  const sortedData = [...data].sort((a,b)=> a.id - b.id);
   return (
     <div className={`popup ${showPopup ? "open" : ""}`}>
       <div className="popup-content-detail">
-      <button className="closebtn " onClick={onClose}>
+        <button className="closebtn " onClick={onClose}>
           &times;
         </button>
-        {sortedData.map((item)=>(
-
-          <div key={item.id} className="contentText">
-          <h2>{item.projectName}</h2>
-          <p className="small">{item.ProjectDetail}</p>
+        <div className="contentText">
+          <h2>{project.projectName}</h2>
+          <p>{project.projectDetail}</p>
 
           <table className="table table-secondary table-bordered table-responsive text-light">
             <tbody>
               <tr>
                 <th>Position:</th>
-                <td>Software Engineer</td>
+                <td>{project.position}</td>
               </tr>
               <tr>
                 <th>Salary:</th>
-                <td>$80,000</td>
+                <td>{project.salary}</td>
               </tr>
               <tr>
                 <th>Amount:</th>
-                <td>10</td>
+                <td>{project.amount}</td>
               </tr>
               <tr>
                 <th>Education:</th>
-                <td>Bachelor's Degree</td>
+                <td>{project.educationLevel}</td>
               </tr>
               <tr>
                 <th>Application Closing Date:</th>
-                <td>dd/mm/yyyy</td>
+                <td>{project.endDate}</td>
               </tr>
             </tbody>
-          </table>  
+          </table>
         </div>
           ))}
         <button
-        onClick={onClose}
-        className="btn btn-warning text-light d-flex justify-content-center link-dark"
-        id="submitbtn"
+          onClick={handleSubmit}
+          className="btn btn-warning text-light d-flex justify-content-center link-dark"
+          id="submitbtn"
         >
           Submit
         </button>

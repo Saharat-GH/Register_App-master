@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import ProjectDetail from "./Projectdetail";
 import axios from "../api/axios";
 
-export default function ProjectBox() {
+export default function ProjectBox(props) {
+  const project = props.project;
   const [popup, setPopus] = useState(false);
   const [data, setData] = useState([]);
   
