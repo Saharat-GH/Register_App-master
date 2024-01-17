@@ -14,7 +14,7 @@ export default function LoginPopup({ showPopup, onClose }) {
   const errRef = useRef();
 
   const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState(""); // Changed from 'password' to 'pwd'
+  const [pwd, setPwd] = useState(""); 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -113,12 +113,12 @@ export default function LoginPopup({ showPopup, onClose }) {
 
             <button
               type="button"
-              className="btn btn-warning text-light link-dark lh-1 mb-auto mt-auto"
+              className="loginBtn btn btn-warning text-light link-dark lh-1 mb-auto mt-auto"
               onClick={handlePopupOn}
             >
               Login <IoLogIn />
             </button>
-            <div className="signupbtn">
+            <div className="signupbtn mb-auto mt-auto">
               <p href="#">
                 or Sign up{" "}
                 <span>

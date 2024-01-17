@@ -10,9 +10,9 @@ function HRCreateProject() {
   const [projectDetail, setProjectDetail] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [closingDate, setClosingDate] = useState("");
-  const [projectSalary, setProjectSalary] = useState(0.0);
+  const [projectSalary, setProjectSalary] = useState();
   const [projectPosition, setProjectPosition] = useState("");
-  const [projectAmount, setProjectAmount] = useState(0);
+  const [projectAmount, setProjectAmount] = useState();
   const [projectEducation, setProjectEducation] = useState("");
   const [projectImage, setProjectImage] = useState("");
 

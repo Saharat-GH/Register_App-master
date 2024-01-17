@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import "../../StyleComponent/projectdetail.css";
 import axios from "axios";
 
-export default function ProjectDetail(props) {
-  const { showPopup, onClose, project } = props;
+export default function ProjectDetail({showPopup, onClose, project}) {
   const [statuses, setStatuses] = useState([]);
   const [lastStatusId, setLastStatusId] = useState(null);
   const [projectId, setProjectId] = useState(null);
 
   
   useEffect(() => {
-    axios.get('http://localhost:9000/status')
+    axios.get('http://localhost:9000/status/')
     .then((response) => {
       setStatuses(response.data);
       const lastStatus = response.data[response.data.length - 1];
@@ -53,7 +52,7 @@ export default function ProjectDetail(props) {
   };
 
   return (
-    <div className={`popup ${showPopup ? "open" : ""}`}>
+    <div key={project.id} className={`popup ${showPopup ? "open" : ""}`}>
       <div className="popup-content-detail">
         <button className="closebtn " onClick={onClose}>
           &times;
