@@ -18,7 +18,7 @@ export default function ProjectDetail(props) {
     })
       .catch((error) => console.error('Error fetching statuses: ', error));
     setProjectId((project.id));
-  }, [project.id]);
+  }, [statuses]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
