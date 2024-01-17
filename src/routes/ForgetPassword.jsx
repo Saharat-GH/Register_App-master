@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../StyleComponent/forgetpass.css";
 import Swal from "sweetalert2";
 import NavBar from "../component/NavBar";
@@ -6,6 +6,9 @@ import NavBar from "../component/NavBar";
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
 
+  // email will be a props when user login.
+  // how to get email from browser?
+  
   const handleAlert = async () => {
     // Check email against the database
     const emailExists = await checkEmailInDatabase(email);

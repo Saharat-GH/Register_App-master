@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import HrNav from "../component/HrNav";
 import "../../StyleComponent/index.css";
 import axios from "axios";
+import TextAreaForm from "../component/TextAreaForm";
+
 function HRCreateProject() {
   // State for form fields
   const [projectName, setProjectName] = useState("");
   const [projectDetail, setProjectDetail] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [closingDate, setClosingDate] = useState("");
-  const [projectSalary, setProjectSalary] = useState();
+  const [projectSalary, setProjectSalary] = useState(0.0);
   const [projectPosition, setProjectPosition] = useState("");
-  const [projectAmount, setProjectAmount] = useState();
+  const [projectAmount, setProjectAmount] = useState(0);
   const [projectEducation, setProjectEducation] = useState("");
   const [projectImage, setProjectImage] = useState("");
 
@@ -41,6 +43,8 @@ function HRCreateProject() {
         console.error("Error adding project:", error);
       });
   };
+
+  
 
   return (
     <div>
@@ -73,16 +77,19 @@ function HRCreateProject() {
                 <label htmlFor="projectDetail" className="form-label">
                   Project Detail:
                 </label>
-                <textarea
+                {/* <textarea
                   id="projectDetail"
                   className="form-control"
                   value={projectDetail}
                   style={{ height: "150px" }}
                   onChange={(e) => setProjectDetail(e.target.value)}
                   placeholder="Enter project detail"
+                  maxLength={600}
                   required
-                ></textarea>
+                ></textarea> */}
+                <TextAreaForm maxCharacters={600}/>
               </div>
+
 
               {/* Application Starting Date */}
               <div className="mb-3">
