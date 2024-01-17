@@ -47,14 +47,14 @@
     color: #333;
   }
 .small{
-    font-size: 10px;
+    font-size: 1rem;
     text-decoration: none;
 }  
 .small:hover{
     color: #ffc107 !important;
 }
 .signupbtn {
-  font-size: 14px;
+  font-size: 0.8rem;
   display: flex;
   justify-content: center;
   position: absolute; /* Set the position to absolute */
@@ -62,3 +62,4 @@
   left: 0;
   right: 0;
 }
+
