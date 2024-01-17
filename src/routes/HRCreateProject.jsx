@@ -77,7 +77,7 @@ function HRCreateProject() {
                 <label htmlFor="projectDetail" className="form-label">
                   Project Detail:
                 </label>
-                <textarea
+                {/* <textarea
                   id="projectDetail"
                   className="form-control"
                   value={projectDetail}
@@ -86,10 +86,10 @@ function HRCreateProject() {
                   placeholder="Enter project detail"
                   maxLength={600}
                   required
-                ></textarea>
+                ></textarea> */}
+                <TextAreaForm maxCharacters={600}/>
               </div>
 
-              <TextAreaForm maxCharacters={600}/>
 
               {/* Application Starting Date */}
               <div className="mb-3">
