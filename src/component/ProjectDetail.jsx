@@ -10,7 +10,7 @@ export default function ProjectDetail(props) {
 
   
   useEffect(() => {
-    axios.get('http://localhost:9000/status/')
+    axios.get('http://localhost:9000/status')
     .then((response) => {
       setStatuses(response.data);
       const lastStatus = response.data[response.data.length - 1];
@@ -41,7 +41,7 @@ export default function ProjectDetail(props) {
         project: {id: projectId},
         status: {id: lastStatusId + 1}
       };
-      await axios.post("http://localhost:8080/userproject/", userProject, {
+      await axios.post("http://localhost:9000/userproject/", userProject, {
         headers: { "Content-Type": "application/json" },
       })
       console.log("New userProject added");
