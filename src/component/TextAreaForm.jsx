@@ -16,11 +16,7 @@ const TextAreaForm = (props) => {
 
   return (
     <div>
-      {/* Project Detail */}
       <div className="mb-3">
-        <label htmlFor="projectDetail" className="form-label">
-          Project Detail:
-        </label>
         <textarea
           id="projectDetail"
           className="form-control"
