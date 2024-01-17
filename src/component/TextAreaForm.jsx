@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const TextAreaForm = () => {
+const TextAreaForm = (props) => {
+  const maxCharacters = props.maxCharacters;
   const [projectDetail, setProjectDetail] = useState('');
 
-  const maxCharacters = 600;
 
   const handleProjectDetailChange = (e) => {
     const inputValue = e.target.value;

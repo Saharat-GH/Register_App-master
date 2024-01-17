@@ -89,7 +89,7 @@ function HRCreateProject() {
                 ></textarea>
               </div>
 
-              <TextAreaForm />
+              <TextAreaForm maxCharacters={600}/>
 
               {/* Application Starting Date */}
               <div className="mb-3">
