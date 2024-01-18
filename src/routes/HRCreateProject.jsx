@@ -216,7 +216,7 @@ function HRCreateProject() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="btn btn-warning link-light text-dark mb-3"
+                className="btn btn-warning link-light text-dark mb-3 lh-1"
               >
                 Create Project
               </button>

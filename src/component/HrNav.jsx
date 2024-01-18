@@ -1,12 +1,12 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
 
 export default function HrNav() {
   return (
     <div>
       <header
-        className="d-flex align-items-center justify-content-between py-1 mb-5 border- bg-dark"
+        className="d-flex align-items-center justify-content-between py-1 mb-3 border- bg-dark"
         id="Nav"
       >
         <div className="col-md-3">
@@ -40,22 +40,8 @@ export default function HrNav() {
               </NavLink>
             </li>
           </ul>
-
-          </div>
-          <div className="d-flex align-items-center">
-          <ul className="nav justify-content-center mb-md-0 me-3">
-            <li>
-              <NavLink
-                to="/profile"
-                className="nav-link px-2 text-warning link-secondary"
-              >
-                Profile
-              </NavLink>
-            </li>
-          </ul>
-          </div>
-        
-        </header>
+        </div>
+      </header>
     </div>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import "../../StyleComponent/projectBox.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "../../StyleComponent/index.css";
-
+import { NavLink } from "react-router-dom";
 const handleDelete = () => {
   Swal.fire({
     title: "Do you want to save the changes?",
@@ -26,6 +26,7 @@ const handleDelete = () => {
 
 export default function HrProjectBox(props) {
   const project = props.project;
+  const projectid = props.id;
 
   return (
     <div className="container d-flex justify-content-center mb-3">
@@ -45,9 +46,12 @@ export default function HrProjectBox(props) {
               <h5 className="card-title text-light">{project.projectName}</h5>
               <p className="card-text text-light">{project.projectDetail}</p>
               <div className="buttonContainer">
+                <NavLink
+                to={`/hreditproject/${projectid}`}>
                 <button className="btn btn-warning text-dark link-light">
                   Edit
                 </button>
+                </NavLink>
                 <button
                   onClick={handleDelete}
                   className="btn btn-danger ms-2 text-dark link-light"

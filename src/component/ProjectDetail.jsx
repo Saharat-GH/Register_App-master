@@ -28,7 +28,7 @@ export default function ProjectDetail({showPopup, onClose, project}) {
       "userStatus": "Apply_Success",
     };
     try {
-      await axios.post("http://localhost:9000/status/", status, {
+      await axios.post("http://localhost:8080/api/status/", status, {
         headers: { "Content-Type": "application/json" },
       })
       console.log("New status added");

@@ -19,7 +19,7 @@ import { AuthProvider } from './context/AuthProvider';
 import Login from './component/Login';
 import TermOfService from './routes/TermOfService';
 import PrivacyPolicy from './routes/PrivacyPolicy';
-
+import HReditProject from "./routes/HReditProject";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login />,
+  },
+  {
+    path: '/hreditproject/:id',
+    element: <HReditProject/>
   }
 ]);
 /* createRoutesFromElements(

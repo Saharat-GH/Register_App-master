@@ -30,6 +30,7 @@ export default function ProjectBox(props) {
             >
               <h5 className="card-title text-light">{project.projectName}</h5>
               <p className="card-text text-light">{project.projectDetail}</p>
+              <small className="text-secondary text-sm">Close on {project.endDate}</small>
               <button
                 onClick={togglePopup}
                 className="btn btn-warning text-light link-dark lh-1"

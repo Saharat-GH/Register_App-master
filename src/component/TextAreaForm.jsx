@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const TextAreaForm = (props) => {
   const maxCharacters = props.maxCharacters;
+  const detailProject = props.projectDetail;
   const [projectDetail, setProjectDetail] = useState('');
 
 
@@ -20,7 +21,7 @@ const TextAreaForm = (props) => {
         <textarea
           id="projectDetail"
           className="form-control"
-          value={projectDetail}
+          value={detailProject}
           style={{ height: '150px' }}
           onChange={handleProjectDetailChange}
           placeholder="Enter project detail"

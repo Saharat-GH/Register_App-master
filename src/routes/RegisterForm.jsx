@@ -150,7 +150,7 @@
       }
       try {
         const response = await axios.post(
-          "http://localhost:9000/user",
+          "http://localhost:8080/api/user",
           {
             firstName: name,
             lastName,
