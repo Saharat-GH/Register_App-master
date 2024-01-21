@@ -4,8 +4,10 @@ import { useState } from "react";
 import LoginPopup from "./LoginPopup";
 import { NavLink } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+
 export default function NavBar() {
   const [login, setLogin] = useState(false);
+
 
   const openLogin = () => {
     setLogin(true);
@@ -81,6 +83,7 @@ export default function NavBar() {
                 Sign-up
               </button>
             </NavLink>
+            
           </div>
         </div>
       </header>
