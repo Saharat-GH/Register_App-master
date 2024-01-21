@@ -19,7 +19,7 @@ import { AuthProvider } from './context/AuthProvider';
 import Login from './component/Login';
 import TermOfService from './routes/TermOfService';
 import PrivacyPolicy from './routes/PrivacyPolicy';
-import HReditProject from "./routes/HReditProject";
+import HReditProject from "./routes/HREditProject";
 const router = createBrowserRouter([
   {
     path: "/",
